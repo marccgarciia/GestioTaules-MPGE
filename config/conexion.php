@@ -2,9 +2,12 @@
 
 require_once 'config.php';
 
-$conexion = mysqli_connect(BD['servidor'], BD['usuario'], BD['password'], BD['bd']);
+$servidor= "mysql:host=".SERVER.";dbname=".BD;
+try {
+    $pdo = new PDO($servidor, USER, PWD, array(PDO::MYSQL_ATTR_INIT_COMMAND=>"SET NAMES UTF8"));
 
-if (!$conexion) {
-    echo "<script>alert('Error conectando con la base de datos!')</script>";
-    exit();
+}catch (Exception $e) {
+    echo $e->getMessage();
+   /*  alert('Error en la conexión con la base de datos'); */
+
 }
