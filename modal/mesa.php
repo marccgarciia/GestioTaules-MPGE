@@ -97,4 +97,41 @@ class Mesa{
     // public function cambiarEstadoMesa(){
 
     // }
+
+    public  function getAllBySalaId (int $id){
+        require "../controller/conexion.php";
+
+        // echo "$alu->nombre";
+        try {
+            $stmt=$pdo->prepare("SELECT  * FROM tbl_mesa where Sala=?");
+            $stmt -> bindparam( 1,$id);
+            $stmt->execute();
+            return $stmt;
+        }catch (Exception $e){
+            echo "<script>alert('Error al mostrar datos de las mesas de la sala '.$id)</script>";
+        }
+
+
+    }
+
+public  function updateEstado (int $id, string $est){
+        if ($est == 'ocupada' || $est =='libre' || $est=='mantenimiento' ){
+            require "../controller/conexion.php";
+            try {
+                $stmt=$pdo->prepare("UPDATE `tbl_mesa` SET `Estado`=? WHERE Id_mesa=?");
+                $stmt -> bindparam( 1,$est);
+                $stmt -> bindparam( 2,$id );
+                $stmt->execute();
+                return $stmt;
+            }catch (Exception $e){
+                echo "<script>alert('Error al actualizar el estado de la mesa '.$id)</script>";
+            }
+
+        }else{
+            echo "<script>alert('Estado introducido no válido')</script>";
+            exit();
+        }
+        require "../controller/conexion.php";
+
+}
 }
