@@ -10,6 +10,9 @@
 body {
     background-color: #5F7470;
 }
+::-webkit-scrollbar {
+    display: none;
+}
 .nav{
     padding: 20px 0 0 0;
     display: flex;
@@ -47,6 +50,7 @@ hr:not([size]) {
     justify-content: center;
     align-items: baseline;
     padding: 15px;
+    overflow: scroll;
 }
 
 .menu{
@@ -126,6 +130,9 @@ span{
     .close{
         width: 3%;
     }
+    .mesas{
+        width: 25%;
+    }
 }
 
 
@@ -133,5 +140,11 @@ span{
     .close{
         width: 5%;
         left: 90%;
+    }
+    .mesas{
+        width: 50%;
+    }
+    .mesas img {
+        width: 70%;
     }
 }
