@@ -26,9 +26,17 @@
     <p class="bienvenida">Bienvenido @camarero1</p> 
 
     <div class="menu">
-        <a href="terraza.html">Terraza</a>
-        <a href="comedor.html">Comedor</a>
-        <a href="salaprivada.html">Sala Privada</a>
+
+        <?php
+        require_once "../modal/sala.php";
+        session_start();
+
+        $ListaSalas=Sala::getAll();
+        foreach ($ListaSalas as $salas => $sala){
+
+            echo "<a href='mostrarmesas.php?sala={$sala['Id_sala']}'>{$sala['nombre_sala']}</a>";
+        }
+        ?>
     </div>
 </body>
 </html>
