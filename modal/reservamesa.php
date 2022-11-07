@@ -137,6 +137,20 @@ class ReservaMesa{
         return $this;
     }
 
+    function getAll (int $id){
+        require "../controller/conexion.php";
+
+        // echo "$alu->nombre";
+        try {
+            $stmt=$pdo->prepare("SELECT * FROM `tbl_reserva_mesa`");
+            $stmt -> bindparam(  $stmt->bindParam(1,$id));
+            $stmt->execute();
+        }catch (Exception $e){
+            echo "<script>alert('Error al mostrar datos de las mesas')</script>";
+        }
+
+
+    }
 
     // public function subirRegistroMesa(){
         

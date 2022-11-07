@@ -71,4 +71,18 @@ class Sala{
 
         return $this;
     }
+
+    function getAll (){
+        require "../controller/conexion.php";
+
+        // echo "$alu->nombre";
+        try {
+            $stmt=$pdo->prepare("SELECT  * FROM tbl_sala");
+            $stmt->execute();
+        }catch (Exception $e){
+            echo "<script>alert('Error al mostrar datos de las salas')</script>";
+        }
+
+
+    }
 }
