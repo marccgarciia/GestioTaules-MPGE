@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');* {
+    font-family: 'Lilita One', cursive;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #5F7470;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor {
+    background-color: #889696;
+    width: 50%;
+    height: 500px;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0px 0px 20px 20px;
+}
+.form{
+    padding: 20px;
+}
+.casilla{
+    background-color: #889696;
+    border: none;
+    color: #E0E2DB;
+    padding: 5px;
+    border-radius: 20px;
+}
+.casilla:hover{
+    background-color: #889696;
+    border: none;
+}
+.casillaenviar{
+    width: 100%;
+    padding: 5px;
+    border:none;
+    margin: 20px 0 0 0;
+    background-image: linear-gradient(90deg,#889696 0,#B8BDB5);
+    border-radius: 5px;
+    color: #5F7470;
+}
+
+.casillaenviar:hover{
+    background-image: linear-gradient(90deg,#B8BDB5 0,#889696);
+}
+
+input:focus-visible {
+    outline: none;
+    background-color: #889696;
+}
+
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #E0E2DB;
+    opacity: 1; /* Firefox */
+}
+
+@media (max-width: 450px) {
+    .contenedor {
+        width: 80%;
+        height: 600px;
+    }
+}
