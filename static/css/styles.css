@@ -1,0 +1,36 @@
+.row-c:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.column100 {
+    width: 100%;
+    float: left;
+}
+
+.column33 {
+    width: 33%;
+    float: left;
+}
+
+.column50 {
+    width: 50%;
+    float: left;
+}
+
+.column70 {
+    width: 70%;
+    float: left;
+}
+
+.column30 {
+    width: 30%;
+    float: left;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
