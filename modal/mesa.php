@@ -98,7 +98,7 @@ class Mesa{
 
     // }
 
-    public  function getAllBySalaId (int $id){
+    public static function getAllBySalaId (int $id){
         require "../controller/conexion.php";
 
         // echo "$alu->nombre";
