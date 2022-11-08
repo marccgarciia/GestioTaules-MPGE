@@ -15,6 +15,9 @@
         <!-- LINK FONT AWESOME -->
         <script src="https://kit.fontawesome.com/2b5286e1aa.js" crossorigin="anonymous"></script>
         <title>Página Principal - MPGE</title>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="../js/reload.js"></script>
+
     </head>
 <body>
     <div class="nav">
