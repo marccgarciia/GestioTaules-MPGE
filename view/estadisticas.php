@@ -44,15 +44,35 @@
                 
             <table class="tftable">
                 <tr>
-                    <th>ID MESA</th>
                     <th>MESA</th>
+                    <th>SALA</th>
                     <th>ESTADO</th> 
                     <th>HORA</th>
                     <th>DIA</th>
                     <th>OCUPACION</th>
                 </tr>
+            <?php
+require_once '../controller/conexion.php';
+require_once '../modal/reservamesa.php';
+$mesas=ReservaMesa::getAll();
 
-                <tr>
+$resultado = $mesas->fetchAll(PDO::FETCH_ASSOC);
+echo "<tr>";
+foreach($resultado as $info){
+
+    echo "<tr>";
+    echo "<td>{$info['Id_mesa']}</td>";
+    echo "<td>{$info['nombre_sala']}</td>";
+    echo "<td>{$info['estado']}</td>";
+    echo "<td>{$info['Hora_rm']}</td>";
+    echo "<td>{$info['Dia_rm']}</td>";
+    echo "<td>{$info['Ocupacion_rm']}</td>";
+    echo "</tr>";
+}
+
+            ?>
+            </tr>
+                <!-- <tr>
                     <td> </td>
                     <td> </td>
                     <td> </td>
@@ -75,7 +95,7 @@
                     <td> </td>
                     <td> </td>
                     <td> </td>
-                </tr>
+                </tr> -->
             </table> 
         </div>
     </div>

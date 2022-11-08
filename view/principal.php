@@ -37,7 +37,7 @@
             echo "<a href='mostrarmesas.php?sala={$sala['Id_sala']}'>{$sala['nombre_sala']}</a>";
         }
         ?>
-        <a href="estadisticas.html">ESTADÍSTICAS</a>
+        <a href="estadisticas.php">ESTADÍSTICAS</a>
     </div>
 </body>
 </html>

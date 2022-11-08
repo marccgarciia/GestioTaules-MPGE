@@ -137,14 +137,15 @@ class ReservaMesa{
         return $this;
     }
 
-    function getAll (int $id){
+    public static function getAll (){
         require "../controller/conexion.php";
 
         // echo "$alu->nombre";
         try {
-            $stmt=$pdo->prepare("SELECT * FROM `tbl_reserva_mesa`");
+            $stmt=$pdo->prepare("SELECT * FROM tbl_reserva_mesa rm  inner join tbl_mesa m on m.Id_mesa=rm.Id_mesa inner join tbl_sala s on s.Id_sala=m.Sala");
            /*  $stmt -> bindparam(  $stmt->bindParam(1,$id)); */
             $stmt->execute();
+            return $stmt;
         }catch (Exception $e){
             echo "<script>alert('Error al mostrar datos de las mesas')</script>";
         }
