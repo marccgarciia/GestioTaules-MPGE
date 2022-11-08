@@ -71,7 +71,7 @@ foreach($resultado as $info){
 }
 
             ?>
-            </tr>
+            
                 <!-- <tr>
                     <td> </td>
                     <td> </td>
