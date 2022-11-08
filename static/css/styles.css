@@ -35,6 +35,7 @@ body {
     border-width: 1px;
     border-color: #5F7470;
     border-collapse: collapse;
+    overflow: scroll;
 }
 
 .tftable th {

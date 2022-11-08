@@ -51,51 +51,26 @@
                     <th>DIA</th>
                     <th>OCUPACION</th>
                 </tr>
-            <?php
-require_once '../controller/conexion.php';
-require_once '../modal/reservamesa.php';
-$mesas=ReservaMesa::getAll();
+                <?php
+                require_once '../controller/conexion.php';
+                require_once '../modal/reservamesa.php';
+                $mesas=ReservaMesa::getAll();
 
-$resultado = $mesas->fetchAll(PDO::FETCH_ASSOC);
-echo "<tr>";
-foreach($resultado as $info){
+                $resultado = $mesas->fetchAll(PDO::FETCH_ASSOC);
+                echo "<tr>";
+                foreach($resultado as $info){
 
-    echo "<tr>";
-    echo "<td>{$info['Id_mesa']}</td>";
-    echo "<td>{$info['nombre_sala']}</td>";
-    echo "<td>{$info['estado']}</td>";
-    echo "<td>{$info['Hora_rm']}</td>";
-    echo "<td>{$info['Dia_rm']}</td>";
-    echo "<td>{$info['Ocupacion_rm']}</td>";
-    echo "</tr>";
-}
+                    echo "<tr>";
+                    echo "<td>{$info['Id_mesa']}</td>";
+                    echo "<td>{$info['nombre_sala']}</td>";
+                    echo "<td>{$info['estado']}</td>";
+                    echo "<td>{$info['Hora_rm']}</td>";
+                    echo "<td>{$info['Dia_rm']}</td>";
+                    echo "<td>{$info['Ocupacion_rm']}</td>";
+                    echo "</tr>";
+                }
 
-            ?>
-            </tr>
-                <!-- <tr>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                </tr>
-                <tr>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                </tr>
-                <tr>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                </tr> -->
+                ?>
             </table> 
         </div>
     </div>

@@ -60,34 +60,34 @@ $resultado = $mesas->fetchAll(PDO::FETCH_ASSOC);
     $libre = 'libre';
     foreach ($resultado as $mesa){
         echo "<div class='mesas'>";
-        if($mesa['capacidad_mesa']=='4' && $mesa['Estado']=='libre'){
-            /* echo "<div class='mesas'>"; */
-            echo "<img src='../static/img/4disponible.png'"."onClick="."clickMe({$mesa['Id_mesa']},'ocupada',{$_GET['sala']})".">";
-            /* echo "</div>"; */
-        }
-        if($mesa['capacidad_mesa']=='4' && $mesa['Estado']=='ocupada'){
-            /* echo "<div class='mesas'>"; */
-            echo "<img src='../static/img/4ocupado.png'"."onClick="."clickMe({$mesa['Id_mesa']},'libre',{$_GET['sala']})".">";
-            /* echo "</div>"; */
-        }
-        if($mesa['capacidad_mesa']=='4' && $mesa['Estado']=='mantenimiento'){
-            /* echo "<div class='mesas'>"; */
-            echo "<img src='../static/img/4mantenimiento.png' alt='ocupado'>";
-            /* echo "</div>"; */
-        }
-        if($mesa['capacidad_mesa']=='2' && $mesa['Estado']=='libre'){
-            echo "<img src='../static/img/2disponible.png'"."onClick="."clickMe({$mesa['Id_mesa']},'ocupada',{$_GET['sala']})".">";
-        }
-        if($mesa['capacidad_mesa']=='2' && $mesa['Estado']=='ocupada'){
-            /* echo "<div class='mesas'>"; */
-            echo "<img src='../static/img/2ocupado.png'"."onClick="."clickMe({$mesa['Id_mesa']},'libre',{$_GET['sala']})".">";
-            /* echo "</div>"; */
-        }
-        if($mesa['capacidad_mesa']=='2' && $mesa['Estado']=='mantenimiento'){
-            /* echo "<div class='mesas'>"; */
-            echo "<img src='../static/img/2mantenimiento.png' alt='ocupado'>";
-            /* echo "</div>"; */
-        }
+            if($mesa['capacidad_mesa']=='4' && $mesa['Estado']=='libre'){
+                /* echo "<div class='mesas'>"; */
+                echo "<img src='../static/img/4disponible.png'"."onClick="."clickMe({$mesa['Id_mesa']},'ocupada',{$_GET['sala']})".">";
+                /* echo "</div>"; */
+            }
+            if($mesa['capacidad_mesa']=='4' && $mesa['Estado']=='ocupada'){
+                /* echo "<div class='mesas'>"; */
+                echo "<img src='../static/img/4ocupado.png'"."onClick="."clickMe({$mesa['Id_mesa']},'libre',{$_GET['sala']})".">";
+                /* echo "</div>"; */
+            }
+            if($mesa['capacidad_mesa']=='4' && $mesa['Estado']=='mantenimiento'){
+                /* echo "<div class='mesas'>"; */
+                echo "<img src='../static/img/4mantenimiento.png' alt='ocupado'>";
+                /* echo "</div>"; */
+            }
+            if($mesa['capacidad_mesa']=='2' && $mesa['Estado']=='libre'){
+                echo "<img src='../static/img/2disponible.png'"."onClick="."clickMe({$mesa['Id_mesa']},'ocupada',{$_GET['sala']})".">";
+            }
+            if($mesa['capacidad_mesa']=='2' && $mesa['Estado']=='ocupada'){
+                /* echo "<div class='mesas'>"; */
+                echo "<img src='../static/img/2ocupado.png'"."onClick="."clickMe({$mesa['Id_mesa']},'libre',{$_GET['sala']})".">";
+                /* echo "</div>"; */
+            }
+            if($mesa['capacidad_mesa']=='2' && $mesa['Estado']=='mantenimiento'){
+                /* echo "<div class='mesas'>"; */
+                echo "<img src='../static/img/2mantenimiento.png' alt='ocupado'>";
+                /* echo "</div>"; */
+            }
         echo "</div>";
     }
     ?>
