@@ -11,12 +11,10 @@
 body {
     background-color: #5F7470;
 }
-
 ::-webkit-scrollbar {
     display: none;
 }
-
-.nav {
+.nav{
     padding: 20px 0 0 0;
     display: flex;
     flex-direction: column;
