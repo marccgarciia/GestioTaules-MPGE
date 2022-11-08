@@ -19,6 +19,46 @@ body {
     opacity: 1; /* Firefox */
 }
 
+.estadisticas{
+    margin: 10px 5px;
+    overflow:scroll;
+}
+.tftable {
+    font-size:12px;
+    color:#D2D4C8;
+    width:100%;
+    border-width: 1px;
+    border-color: #5F7470;
+    border-collapse: collapse;
+}
+
+.tftable th {
+    font-size:12px;
+    background-color:#5F7470;
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #B8BDB5;
+    text-align:center;
+}
+
+.tftable tr {
+    background-color:#686767;
+}
+
+.tftable td {
+    font-size:12px;
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #B8BDB5;
+    text-align: center;
+}
+
+.tftable tr:hover {
+    background-color: #5F7470;
+}
+
 .btn-modal{
     width: 100px;
     height: 30px;
