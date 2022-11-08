@@ -114,16 +114,43 @@ class Mesa{
 
     }
 
-public  function updateEstado (int $id, string $est){
-        if ($est == 'ocupada' || $est =='libre' || $est=='mantenimiento' ){
+public static function updateEstado (int $id, string $est){
+
+        if ($est == "ocupada" || $est =="libre" || $est=="mantenimiento" ){
             require "../controller/conexion.php";
+
+            $id_cam=1;
+            $dia=date("Y-m-d");
+            $hora=date("H:i:s");
+            $ocu=4;
+
             try {
-                $stmt=$pdo->prepare("UPDATE `tbl_mesa` SET `Estado`=? WHERE Id_mesa=?");
+                $pdo -> beginTransaction();
+                $sql="UPDATE `tbl_mesa` SET `Estado`=? WHERE Id_mesa=?";
+                $stmt=$pdo->prepare($sql);
                 $stmt -> bindparam( 1,$est);
                 $stmt -> bindparam( 2,$id );
                 $stmt->execute();
+
+                $sql2="INSERT INTO `tbl_reserva_mesa`(`Id_reserva`, `Id_mesa`, `Id_cam`, `Dia_rm`, `Hora_rm`, `Ocupacion_rm`, `estado`) VALUES (null,?,?,?,?,?,?)";
+                $stmt= $pdo->prepare($sql2);
+                $stmt->bindParam(1,$id);
+                $stmt->bindParam(2,$id_cam);
+                $stmt->bindParam(3,$dia);
+                $stmt->bindParam(4,$hora);
+                $stmt->bindParam(5,$ocu);
+                $stmt->bindParam(6,$est);
+                $stmt->execute();
+
+
+                $pdo -> commit();
+
+
                 return $stmt;
+
             }catch (Exception $e){
+                $pdo -> rollback();
+                echo $e->getMessage();
                 echo "<script>alert('Error al actualizar el estado de la mesa '.$id)</script>";
             }
 
@@ -131,7 +158,7 @@ public  function updateEstado (int $id, string $est){
             echo "<script>alert('Estado introducido no válido')</script>";
             exit();
         }
-        require "../controller/conexion.php";
+
 
 }
 }
