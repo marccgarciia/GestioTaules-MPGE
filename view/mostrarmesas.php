@@ -11,7 +11,8 @@
         <link rel="stylesheet" href="../static/css/styles.css">
         <!-- LINK JS -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="../js/reload.js"></script>
+       <!--  <script src="../js/reload.js"></script> -->
+        <script src="../js/script.js"></script>
         <!-- <script type="text/javascript" src="../static/js/script.js"></script> -->
        <!--  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
         <!-- LINK FONT AWESOME -->
@@ -43,15 +44,15 @@
                 echo "<div class='mesas'>";
                 if($mesa['capacidad_mesa']=='4' && $mesa['Estado']=='libre'){
                     /* echo "<div class='mesas'>"; */
-                    echo "<img src='../static/img/4disponible.png' alt='disponible'>";
+                    echo "<img src='../static/img/4disponible.png' onClick='clickMe({$mesa['Id_mesa']},'ocupada')' alt='disponible'>";
                     /* echo "</div>"; */
                 }
                 if($mesa['capacidad_mesa']=='4' && $mesa['Estado']=='ocupada'){
                     /* echo "<div class='mesas'>"; */
-                    echo "<img src='../static/img/4ocupado.png' alt='ocupado'>";
+                    echo "<img src='../static/img/4ocupado.png' onClick='clickMe({$mesa['Id_mesa']},'libre')' alt='ocupado'>";
                     /* echo "</div>"; */
                 }
-                if($mesa['capacidad_mesa']=='4' && $mesa['Estado']=='mantenimineto'){
+                if($mesa['capacidad_mesa']=='4' && $mesa['Estado']=='mantenimiento'){
                     /* echo "<div class='mesas'>"; */
                     echo "<img src='../static/img/4mantenimiento.png' alt='ocupado'>";
                     /* echo "</div>"; */
@@ -64,7 +65,7 @@
                     echo "<img src='../static/img/4ocupado.png' alt='ocupado'>";
                     /* echo "</div>"; */
                 }
-                if($mesa['capacidad_mesa']=='2' && $mesa['Estado']=='mantenimineto'){
+                if($mesa['capacidad_mesa']=='2' && $mesa['Estado']=='mantenimiento'){
                     /* echo "<div class='mesas'>"; */
                     echo "<img src='../static/img/2mantenimiento.png' alt='ocupado'>";
                     /* echo "</div>"; */
@@ -72,6 +73,13 @@
                 echo "</div>";
             }
         ?>
+
+<!--         <script>
+            function clickMe(id,estado){
+
+                document.write(result);
+            }
+        </script> -->
         <!-- <div class="mesas">
             <img src="../static/img/4disponible.png" alt="disponible">
         </div>

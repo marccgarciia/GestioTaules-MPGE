@@ -114,7 +114,7 @@ class Mesa{
 
     }
 
-public  function updateEstado (int $id, string $est){
+public static function updateEstado (int $id, string $est){
         if ($est == 'ocupada' || $est =='libre' || $est=='mantenimiento' ){
             require "../controller/conexion.php";
             try {
