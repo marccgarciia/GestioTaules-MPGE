@@ -72,17 +72,34 @@ class Sala{
         return $this;
     }
 
-    function getAll (){
+    public static function getAll (){
         require "../controller/conexion.php";
 
-        // echo "$alu->nombre";
+
         try {
             $stmt=$pdo->prepare("SELECT  * FROM tbl_sala");
             $stmt->execute();
+            return $stmt;
         }catch (Exception $e){
             echo "<script>alert('Error al mostrar datos de las salas')</script>";
         }
 
 
     }
+
+   public function nameById(int $id){
+       require "../controller/conexion.php";
+
+
+       try {
+           $stmt=$pdo->prepare("SELECT nombre_sala FROM tbl_sala where Id_sala=?");
+           $stmt -> bindparam( 1,$id);
+           $stmt->execute();
+           $resultado= $stmt -> fetch(PDO::FETCH_ASSOC);
+           return $resultado;
+       }catch (Exception $e){
+           echo "<script>alert('Error al mostrar datos de las salas')</script>";
+       }
+
+   }
 }

@@ -12,6 +12,10 @@ body {
     background-color: #5F7470;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 .nav {
     padding: 20px 0 0 0;
     display: flex;
@@ -51,6 +55,7 @@ hr:not([size]) {
     justify-content: center;
     align-items: baseline;
     padding: 15px;
+    overflow: scroll;
 }
 
 .menu {
@@ -68,7 +73,7 @@ hr:not([size]) {
     width: 50%;
     height: 20%;
     padding: 5px;
-    margin: 40px 0 40px 0;
+    margin: 25px 0 40px 0;
     background-color: #E0E2DB;
     border: 1px solid #889696;
     border-radius: 5px;
@@ -129,5 +134,21 @@ span {
 @media (max-width: 800px) {
     .close {
         width: 3%;
+    }
+    .mesas {
+        width: 25%;
+    }
+}
+
+@media (max-width: 450px) {
+    .close {
+        width: 5%;
+        left: 90%;
+    }
+    .mesas {
+        width: 50%;
+    }
+    .mesas img {
+        width: 70%;
     }
 }

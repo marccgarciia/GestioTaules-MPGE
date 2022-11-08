@@ -27,12 +27,12 @@
     
     <div class="mininav">
         <p class="bienvenida">Bienvenido @camarero1 - <span>COMEDOR</span></p> 
-        <a href="../view/principal.html" title="close" class="close"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32C28.7 32 0 60.7 0 96L0 416zM128 256c0-6.7 2.8-13 7.7-17.6l112-104c7-6.5 17.2-8.2 25.9-4.4s14.4 12.5 14.4 22l0 208c0 9.5-5.7 18.2-14.4 22s-18.9 2.1-25.9-4.4l-112-104c-4.9-4.5-7.7-10.9-7.7-17.6z"/></svg></a>
+        <a href="../view/principal.php" title="close" class="close"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32C28.7 32 0 60.7 0 96L0 416zM128 256c0-6.7 2.8-13 7.7-17.6l112-104c7-6.5 17.2-8.2 25.9-4.4s14.4 12.5 14.4 22l0 208c0 9.5-5.7 18.2-14.4 22s-18.9 2.1-25.9-4.4l-112-104c-4.9-4.5-7.7-10.9-7.7-17.6z"/></svg></a>
     </div>
     <?php
     
     require_once '../modal/mesa.php';
-    $mesas=Mesa::getAllBySalaId(1);
+    $mesas=Mesa::getAllBySalaId($_GET['sala']);
 
     $resultado = $mesas->fetchAll(PDO::FETCH_ASSOC);
     /* var_dump($resultado); */
@@ -48,7 +48,12 @@
                 }
                 if($mesa['capacidad_mesa']=='4' && $mesa['Estado']=='ocupada'){
                     /* echo "<div class='mesas'>"; */
-                    echo "<img src='../static/img/4ocupado.png' alt='disponible'>";
+                    echo "<img src='../static/img/4ocupado.png' alt='ocupado'>";
+                    /* echo "</div>"; */
+                }
+                if($mesa['capacidad_mesa']=='4' && $mesa['Estado']=='mantenimineto'){
+                    /* echo "<div class='mesas'>"; */
+                    echo "<img src='../static/img/4mantenimiento.png' alt='ocupado'>";
                     /* echo "</div>"; */
                 }
                 if($mesa['capacidad_mesa']=='2' && $mesa['Estado']=='libre'){
@@ -56,7 +61,12 @@
                 }
                 if($mesa['capacidad_mesa']=='2' && $mesa['Estado']=='ocupada'){
                     /* echo "<div class='mesas'>"; */
-                    echo "<img src='../static/img/4ocupado.png' alt='disponible'>";
+                    echo "<img src='../static/img/4ocupado.png' alt='ocupado'>";
+                    /* echo "</div>"; */
+                }
+                if($mesa['capacidad_mesa']=='2' && $mesa['Estado']=='mantenimineto'){
+                    /* echo "<div class='mesas'>"; */
+                    echo "<img src='../static/img/2mantenimiento.png' alt='ocupado'>";
                     /* echo "</div>"; */
                 }
                 echo "</div>";
