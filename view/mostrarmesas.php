@@ -12,7 +12,7 @@
     <!-- LINK JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/reload.js"></script>
-     <script src="../js/script.js"></script>
+    <script src="../js/script.js"></script>
     <!-- <script type="text/javascript" src="../static/js/script.js"></script> -->
     <!--  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
     <!-- LINK FONT AWESOME -->
@@ -35,7 +35,7 @@ require_once '../controller/conexion.php';
 require_once '../modal/mesa.php';
 if (isset($_GET['camb']) && $_GET['camb'] == 'si'){
 
-       Mesa::updateEstado($_GET['id'], $_GET['est']);
+    Mesa::updateEstado($_GET['id'], $_GET['est']);
 
 }
 
