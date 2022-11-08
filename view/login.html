@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,16 +14,17 @@
     <script src="https://kit.fontawesome.com/2b5286e1aa.js" crossorigin="anonymous"></script>
     <!-- LINK JS -->
     <script type="text/javascript" src="../static/js/script.js"></script>
-
+    <script type="text/javascript" src="../js/valida.js"></script>
     <title>Iniciar sesión - MPGE</title>
 </head>
+
 <body>
     <div class="contenedor">
         <div class="form">
-            <form class="form-login" action="principal.php" method="post">
+            <form class="form-login" action="../proc/login.php" method="post">
                 <h1>Gestió Taules - MPGE</h1>
-                <p>Correo electrónico</p>
-                <input class="casilla" type="text" id="email_gestor" name="email_gestor" placeholder="Introduce tu email...">
+                <p>Usuario</p>
+                <input class="casilla" type="text" id="dni_gestor" name="dni_gestor" placeholder="Introduce tu DNI...">
                 <p>Contraseña</p>
                 <input class="casilla" type="password" id="contra_gestor" name="contra_gestor" placeholder="Introduce la contraseña...">
                 <br>
@@ -31,4 +33,5 @@
         </div>
     </div>
 </body>
+
 </html>
