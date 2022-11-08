@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- LINK BOOTSTRAP -->
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <!-- LINK CSS -->
     <link rel="stylesheet" href="../static/css/styles.css">
     <!-- LINK JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="../js/reload.js"></script>
+    <!--    <script src="../js/reload.js"></script>-->
     <script src="../js/script.js"></script>
     <!-- <script type="text/javascript" src="../static/js/script.js"></script> -->
     <!--  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
@@ -62,12 +62,12 @@ $resultado = $mesas->fetchAll(PDO::FETCH_ASSOC);
         echo "<div class='mesas'>";
         if($mesa['capacidad_mesa']=='4' && $mesa['Estado']=='libre'){
             /* echo "<div class='mesas'>"; */
-            echo "<img src='../static/img/4disponible.png'"."onClick="."clickMe({$mesa['Id_mesa']},'ocupada',{$_GET['sala']})".">";
+            echo "<img name='js-open-modal' src='../static/img/4disponible.png'"."onKeyUp="."clickMe({$mesa['Id_mesa']},'ocupada',{$_GET['sala']})".">";
             /* echo "</div>"; */
         }
         if($mesa['capacidad_mesa']=='4' && $mesa['Estado']=='ocupada'){
             /* echo "<div class='mesas'>"; */
-            echo "<img src='../static/img/4ocupado.png'"."onClick="."clickMe({$mesa['Id_mesa']},'libre',{$_GET['sala']})".">";
+            echo "<img src='../static/img/4ocupado.png'"."onKeyUp="."clickMe({$mesa['Id_mesa']},'libre',{$_GET['sala']})".">";
             /* echo "</div>"; */
         }
         if($mesa['capacidad_mesa']=='4' && $mesa['Estado']=='mantenimiento'){
@@ -76,11 +76,11 @@ $resultado = $mesas->fetchAll(PDO::FETCH_ASSOC);
             /* echo "</div>"; */
         }
         if($mesa['capacidad_mesa']=='2' && $mesa['Estado']=='libre'){
-            echo "<img src='../static/img/2disponible.png'"."onClick="."clickMe({$mesa['Id_mesa']},'ocupada',{$_GET['sala']})".">";
+            echo "<img  name='js-open-modal' src='../static/img/2disponible.png'"."onKeyUp="."clickMe({$mesa['Id_mesa']},'ocupada',{$_GET['sala']})".">";
         }
         if($mesa['capacidad_mesa']=='2' && $mesa['Estado']=='ocupada'){
             /* echo "<div class='mesas'>"; */
-            echo "<img src='../static/img/2ocupado.png'"."onClick="."clickMe({$mesa['Id_mesa']},'libre',{$_GET['sala']})".">";
+            echo "<img src='../static/img/2ocupado.png'"."onKeyUp="."clickMe({$mesa['Id_mesa']},'libre',{$_GET['sala']})".">";
             /* echo "</div>"; */
         }
         if($mesa['capacidad_mesa']=='2' && $mesa['Estado']=='mantenimiento'){
@@ -91,6 +91,13 @@ $resultado = $mesas->fetchAll(PDO::FETCH_ASSOC);
         echo "</div>";
     }
     ?>
+
+    <div id="modal" class="modal">
+        <a href="#" class="js-close-modal">X</a>
+        <form>
+            <input type="number" name="comensales" >
+        </form>
+    </div>
 
     <script>
         // function clickMe(id, estado) {
