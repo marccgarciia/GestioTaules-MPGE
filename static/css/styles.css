@@ -14,6 +14,108 @@ body {
 ::-webkit-scrollbar {
     display: none;
 }
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #889696;
+    opacity: 1; /* Firefox */
+}
+
+.estadisticas{
+    margin: 10px 5px;
+    overflow:scroll;
+}
+.tftable {
+    font-size:12px;
+    color:#D2D4C8;
+    width:100%;
+    border-width: 1px;
+    border-color: #5F7470;
+    border-collapse: collapse;
+}
+
+.tftable th {
+    font-size:12px;
+    background-color:#5F7470;
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #B8BDB5;
+    text-align:center;
+}
+
+.tftable tr {
+    background-color:#686767;
+}
+
+.tftable td {
+    font-size:12px;
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #B8BDB5;
+    text-align: center;
+}
+
+.tftable tr:hover {
+    background-color: #5F7470;
+}
+
+.btn-modal{
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    color: #D2D4C8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 0 5px;
+    background-color: #212529;
+}
+.btn-modal:hover{
+    background-color: #5F7470;
+    color: #212529;
+}
+
+#btn-modal {
+    display: none;
+}
+
+#btn-modal:checked~.filtros {
+    display: flex;
+}
+.filtros{
+    margin: 10px 0px 10px 0px;
+    display: none;
+}
+.filtros input {
+    border: none;
+    margin: 0 5px;
+    padding: 2px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #5F7470;
+    color: #D2D4C8;
+}
+.filtros input:hover{
+    background-color: #212529;
+    color: #D2D4C8;
+}
+.filtros input:focus-visible{
+    background-color: #212529;
+    color: #D2D4C8;
+}
+.filtros button{
+    width: 5%;
+    height: 28px;
+    border: none;
+    border-radius: 5px;
+    background-color: #212529;
+    color: #D2D4C8;
+}
+.filtros button:hover{
+    background-color: #5F7470;
+    color: #212529;
+}
+
 .nav{
     padding: 20px 0 0 0;
     display: flex;
@@ -135,6 +237,19 @@ span {
     }
     .mesas {
         width: 25%;
+    }
+    .filtros{
+        display: none;
+        flex-direction: column;
+    }
+    .filtros input{
+        height: 30px;
+        margin: 5px;
+        font-size: 80%;
+    }
+    .filtros button{
+        margin: 0 0 0 5px;      
+        width: 100px;  
     }
 }
 
