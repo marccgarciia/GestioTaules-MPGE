@@ -45,6 +45,11 @@ if (registroCamposVacios($dni, $contraseña) !== FALSE) {
     header('Location:../controller/logval.php?error=camposvacios');
     exit();
 }
+
+if (validaDNI($dni) !== FALSE) {
+    header('Location:../controller/logval.php?error=validadni');
+    exit();
+}
 // if (errorEmail($correo) !== FALSE) {
 //     header('Location:logval.php?error=erroremail');
 //     exit();

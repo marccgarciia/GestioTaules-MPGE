@@ -50,3 +50,15 @@ function checkEmail($correo_alu) {
     }
     return $error;
 }
+
+function validaDNI($dni) {
+    $partes = str_split($dni,8);
+    $numeros = $partes[0];
+    $letra = strtoupper($partes[1]);
+    if (substr("TRWAGMYFPDXBNJZSQVHLCKE",$numeros%23,1) == $letra){
+        $error=false;
+    }else{
+        $error=true;
+    }
+    return $error;
+}
