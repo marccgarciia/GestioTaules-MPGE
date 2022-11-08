@@ -72,7 +72,7 @@ class Sala{
         return $this;
     }
 
-    public function getAll (){
+    public static function getAll (){
         require "../controller/conexion.php";
 
 

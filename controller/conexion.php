@@ -6,6 +6,6 @@ try {
 
 }catch (Exception $e) {
     echo $e->getMessage();
-    alert('Error en la conexión con la base de datos');
+    /* alert('Error en la conexión con la base de datos'); */
 
 }

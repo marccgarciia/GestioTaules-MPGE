@@ -6,5 +6,7 @@ $(document).ready(function(){
 function refrescar(){
 
     //Actualiza la página
-    location.reload();
+    var url = window.location.href;
+    url = url.split('&')[0];
+    window.location.href=url
 }
