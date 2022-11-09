@@ -196,6 +196,7 @@ body {
 
 #btn-modal:checked~.filtros {
     display: flex;
+    flex-direction: column;
 }
 
 .filtros {
@@ -366,6 +367,7 @@ span {
         height: 30px;
         margin: 5px;
         font-size: 80%;
+        width: 140px;
     }
     .filtros button {
         margin: 0 0 0 5px;

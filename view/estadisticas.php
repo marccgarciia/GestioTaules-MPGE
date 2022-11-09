@@ -39,6 +39,8 @@
                     <input type="text" name="filtro_camareros" placeholder="Filtrar Camareros">
                     <input type="text" name="filtro_salas" placeholder="Filtrar Salas">
                     <input type="text" name="filtro_mesas" placeholder="Filtrar Mesas">
+                    <input type="time" name="filtro_mesas" placeholder="Filtrar Hora Inicial">
+                    <input type="time" name="filtro_mesas" placeholder="Filtrar Hora Final">
                     <button type="submit" name="buscador" value="Buscar" class="btnbuscar"><label for=""><i class="fa-solid fa-bolt"></i></label></button> 
                 </form> 
             </div>
