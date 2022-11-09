@@ -384,4 +384,14 @@ span {
     .mesas img {
         width: 70%;
     }
+    .modalcontainer{
+        width: 50%;
+    }
+    .modalcontainer input{
+        width: 50px;
+    }
+    .modalclose {
+        top: 8px;
+        left: 81%;
+    }
 }
