@@ -153,18 +153,18 @@ class ReservaMesa{
 
     }
 
-    public static function getFilter($camarero,$sala,$mesa){
+    public static function getFilter($camarero,$sala,$mesa,$dia,$horaInicial,$horaFinal){
         require "../controller/conexion.php";
         try {
 
-            if($camarero==null && $sala==null && $mesa==null){
+            if($camarero==null && $sala==null && $mesa==null && $dia==null && $horaInicial==null && $horaFinal==null){
                 $sql="SELECT * FROM tbl_reserva_mesa rm  inner join tbl_mesa m on m.Id_mesa=rm.Id_mesa inner join tbl_sala s on s.Id_sala=m.Sala ORDER BY rm.Id_reserva DESC";
             }else{
                 $sql="SELECT * FROM tbl_reserva_mesa rm  inner join tbl_mesa m on m.Id_mesa=rm.Id_mesa inner join tbl_sala s on s.Id_sala=m.Sala ";
 
                 if($camarero==!null){
                     $sql=$sql." WHERE Id_cam LIKE '%$camarero%' ";
-                    if($sala==!null || $mesa==!null){
+                    if($sala==!null || $mesa==!null || $dia==!null || $horaInicial==!null || $horaFinal==!null){
                         $sql=$sql."AND";
                     }
                 }
@@ -175,7 +175,7 @@ class ReservaMesa{
                     }else{
                         $sql=$sql." WHERE s.nombre_sala LIKE '%$sala%' ";
                     }
-                    if($mesa==!null){
+                    if($mesa==!null || $dia==!null || $horaInicial==!null || $horaFinal==!null){
                         $sql=$sql."AND";
                     }
                 }
@@ -185,6 +185,46 @@ class ReservaMesa{
                         $sql=$sql." m.Id_mesa LIKE '%$mesa%' ";
                     }else{
                         $sql=$sql." WHERE m.Id_mesa LIKE '%$mesa%' ";
+                    }
+                    if($dia==!null || $horaInicial==!null || $horaFinal==!null){
+                        $sql=$sql."AND";
+                    }
+                }
+                if($dia==!null){
+                    /* $dia2=substr($dia,1);
+                    echo $dia2; */
+                    /* echo $dia; */
+                    
+                    if($sala==!null || $camarero==!null || $mesa==!null){
+                        $sql=$sql." rm.Dia_rm LIKE '$dia' ";
+                    }else{
+                        $sql=$sql." WHERE rm.Dia_rm LIKE '$dia' ";
+                    }
+                    if($horaInicial==!null || $horaFinal==!null){
+                        $sql=$sql."AND";
+                    }
+                }
+                if($horaInicial==!null || $horaFinal==!null){
+                    /* echo $horaInicial; */
+                    /* die(); */
+                    if($horaInicial==!null && $horaFinal==!null){
+                        if($sala==!null || $camarero==!null || $mesa==!null || $dia==!null){
+                            $sql=$sql." rm.Hora_rm BETWEEN '$horaInicial' AND '$horaFinal' ";
+                        }else{
+                            $sql=$sql." WHERE rm.Hora_rm BETWEEN '$horaInicial' AND '$horaFinal'";
+                        }
+                    }elseif($horaInicial==!null){
+                        if($sala==!null || $camarero==!null || $mesa==!null || $dia==!null){
+                            $sql=$sql." rm.Hora_rm > '$horaInicial' ";
+                        }else{
+                            $sql=$sql." WHERE rm.Hora_rm > '$horaInicial'";
+                        }
+                    }elseif($horaFinal==!null){
+                        if($sala==!null || $camarero==!null || $mesa==!null || $dia==!null){
+                            $sql=$sql." rm.Hora_rm < '$horaFinal' ";
+                        }else{
+                            $sql=$sql." WHERE rm.Hora_rm < '$horaFinal'";
+                        }
                     }
                 }
                 $sql=$sql." ORDER BY rm.Id_reserva DESC";

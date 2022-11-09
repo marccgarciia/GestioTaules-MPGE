@@ -39,8 +39,9 @@
                     <input type="text" name="filtro_camareros" placeholder="Filtrar Camareros">
                     <input type="text" name="filtro_salas" placeholder="Filtrar Salas">
                     <input type="text" name="filtro_mesas" placeholder="Filtrar Mesas">
-                    <input type="time" name="filtro_mesas" placeholder="Filtrar Hora Inicial">
-                    <input type="time" name="filtro_mesas" placeholder="Filtrar Hora Final">
+                    <input type="date" name="filtro_dia" placeholder="Filtrar Dia">
+                    <input type="time" name="filtro_horainicial" placeholder="Filtrar Hora Inicial">
+                    <input type="time" name="filtro_horafinal" placeholder="Filtrar Hora Final">
                     <button type="submit" name="buscador" value="Buscar" class="btnbuscar"><label for=""><i class="fa-solid fa-bolt"></i></label></button> 
                 </form> 
             </div>
@@ -63,7 +64,7 @@ require_once '../controller/conexion.php';
 require_once '../modal/reservamesa.php';
 $mesas=ReservaMesa::getAll();
 if(isset($_GET['filtro']) && isset($_POST['buscador'])){
-    $mesas=ReservaMesa::getFilter($_POST['filtro_camareros'],$_POST['filtro_salas'],$_POST['filtro_mesas']);
+    $mesas=ReservaMesa::getFilter($_POST['filtro_camareros'],$_POST['filtro_salas'],$_POST['filtro_mesas'],$_POST['filtro_dia'],$_POST['filtro_horainicial'],$_POST['filtro_horafinal']);
     
 }
 $resultado = $mesas->fetchAll(PDO::FETCH_ASSOC);
