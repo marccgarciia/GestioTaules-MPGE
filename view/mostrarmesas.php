@@ -62,12 +62,12 @@ $resultado = $mesas->fetchAll(PDO::FETCH_ASSOC);
         echo "<div class='mesas'>";
         if($mesa['capacidad_mesa']=='4' && $mesa['Estado']=='libre'){
             /* echo "<div class='mesas'>"; */
-            echo "<img name='js-open-modal' src='../static/img/4disponible.png'"."onKeyUp="."clickMe({$mesa['Id_mesa']},'ocupada',{$_GET['sala']})".">";
+            echo "<img name='js-open-modal' src='../static/img/4disponible.png'"."onClick="."clickMe({$mesa['Id_mesa']},'ocupada',{$_GET['sala']})".">";
             /* echo "</div>"; */
         }
         if($mesa['capacidad_mesa']=='4' && $mesa['Estado']=='ocupada'){
             /* echo "<div class='mesas'>"; */
-            echo "<img src='../static/img/4ocupado.png'"."onKeyUp="."clickMe({$mesa['Id_mesa']},'libre',{$_GET['sala']})".">";
+            echo "<img src='../static/img/4ocupado.png'"."clickMe({$mesa['Id_mesa']},'libre',{$_GET['sala']})".">";
             /* echo "</div>"; */
         }
         if($mesa['capacidad_mesa']=='4' && $mesa['Estado']=='mantenimiento'){
@@ -76,11 +76,11 @@ $resultado = $mesas->fetchAll(PDO::FETCH_ASSOC);
             /* echo "</div>"; */
         }
         if($mesa['capacidad_mesa']=='2' && $mesa['Estado']=='libre'){
-            echo "<img  name='js-open-modal' src='../static/img/2disponible.png'"."onKeyUp="."clickMe({$mesa['Id_mesa']},'ocupada',{$_GET['sala']})".">";
+            echo "<img  name='js-open-modal' src='../static/img/2disponible.png'"."onClick="."clickMe({$mesa['Id_mesa']},'ocupada',{$_GET['sala']})".">";
         }
         if($mesa['capacidad_mesa']=='2' && $mesa['Estado']=='ocupada'){
             /* echo "<div class='mesas'>"; */
-            echo "<img src='../static/img/2ocupado.png'"."onKeyUp="."clickMe({$mesa['Id_mesa']},'libre',{$_GET['sala']})".">";
+            echo "<img src='../static/img/2ocupado.png'"."onClick="."clickMe({$mesa['Id_mesa']},'libre',{$_GET['sala']})".">";
             /* echo "</div>"; */
         }
         if($mesa['capacidad_mesa']=='2' && $mesa['Estado']=='mantenimiento'){
@@ -93,9 +93,10 @@ $resultado = $mesas->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
     <div id="modal" class="modal">
-        <a href="#" class="js-close-modal">X</a>
-        <form>
-            <input type="number" name="comensales" >
+        <a href="#" id="js-close-modal">X</a>
+        <form id="form" method="post">
+            <input type="number"  id="comensales" name="comensales" value="1" >
+            <input type="submit" id="submit">
         </form>
     </div>
 
