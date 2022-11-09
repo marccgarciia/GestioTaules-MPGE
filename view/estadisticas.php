@@ -37,6 +37,7 @@
             <input type="text" name="filtro_camareros" placeholder="Filtrar Camareros">
             <input type="text" name="filtro_salas" placeholder="Filtrar Salas">
             <input type="text" name="filtro_mesas" placeholder="Filtrar Mesas">
+            <input type="text" name="filtro_dias" placeholder="Filtrar Dias">
             <button type="submit" name="buscador" value="Buscar" class="btnbuscar"><label for=""><i class="fa-solid fa-bolt"></i></label></button> 
         </div>
 
@@ -44,38 +45,33 @@
                 
             <table class="tftable">
                 <tr>
-                    <th>ID MESA</th>
                     <th>MESA</th>
+                    <th>SALA</th>
                     <th>ESTADO</th> 
                     <th>HORA</th>
                     <th>DIA</th>
                     <th>OCUPACION</th>
                 </tr>
+                <?php
+                require_once '../controller/conexion.php';
+                require_once '../modal/reservamesa.php';
+                $mesas=ReservaMesa::getAll();
 
-                <tr>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                </tr>
-                <tr>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                </tr>
-                <tr>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                </tr>
+                $resultado = $mesas->fetchAll(PDO::FETCH_ASSOC);
+                echo "<tr>";
+                foreach($resultado as $info){
+
+                    echo "<tr>";
+                    echo "<td>{$info['Id_mesa']}</td>";
+                    echo "<td>{$info['nombre_sala']}</td>";
+                    echo "<td>{$info['estado']}</td>";
+                    echo "<td>{$info['Hora_rm']}</td>";
+                    echo "<td>{$info['Dia_rm']}</td>";
+                    echo "<td>{$info['Ocupacion_rm']}</td>";
+                    echo "</tr>";
+                }
+                
+                ?>
             </table> 
         </div>
     </div>

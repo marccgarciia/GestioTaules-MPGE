@@ -87,7 +87,7 @@ class Sala{
 
     }
 
-   public function nameById(int $id){
+   public static function nameById(int $id){
        require "../controller/conexion.php";
 
 

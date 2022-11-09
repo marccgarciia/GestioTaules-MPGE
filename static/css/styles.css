@@ -11,44 +11,49 @@
 body {
     background-color: #5F7470;
 }
+
 ::-webkit-scrollbar {
     display: none;
 }
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+
+::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #889696;
-    opacity: 1; /* Firefox */
+    opacity: 1;
+    /* Firefox */
 }
 
-.estadisticas{
+.estadisticas {
     margin: 10px 5px;
-    overflow:scroll;
-
+    height: 300px;
+    overflow: scroll;
 }
+
 .tftable {
-    font-size:12px;
-    color:#D2D4C8;
-    width:100%;
+    font-size: 12px;
+    color: #D2D4C8;
+    width: 100%;
     border-width: 1px;
     border-color: #5F7470;
     border-collapse: collapse;
 }
 
 .tftable th {
-    font-size:12px;
-    background-color:#5F7470;
+    font-size: 12px;
+    background-color: #5F7470;
     border-width: 1px;
     padding: 8px;
     border-style: solid;
     border-color: #B8BDB5;
-    text-align:center;
+    text-align: center;
 }
 
 .tftable tr {
-    background-color:#686767;
+    background-color: #686767;
 }
 
 .tftable td {
-    font-size:12px;
+    font-size: 12px;
     border-width: 1px;
     padding: 8px;
     border-style: solid;
@@ -60,7 +65,7 @@ body {
     background-color: #5F7470;
 }
 
-.btn-modal{
+.btn-modal {
     width: 100px;
     height: 30px;
     border-radius: 5px;
@@ -71,7 +76,8 @@ body {
     margin: 0 0 0 5px;
     background-color: #212529;
 }
-.btn-modal:hover{
+
+.btn-modal:hover {
     background-color: #5F7470;
     color: #212529;
 }
@@ -180,10 +186,12 @@ body {
 #btn-modal:checked~.filtros {
     display: flex;
 }
-.filtros{
+
+.filtros {
     margin: 10px 0px 10px 0px;
     display: none;
 }
+
 .filtros input {
     border: none;
     margin: 0 5px;
@@ -193,15 +201,18 @@ body {
     background-color: #5F7470;
     color: #D2D4C8;
 }
-.filtros input:hover{
+
+.filtros input:hover {
     background-color: #212529;
     color: #D2D4C8;
 }
-.filtros input:focus-visible{
+
+.filtros input:focus-visible {
     background-color: #212529;
     color: #D2D4C8;
 }
-.filtros button{
+
+.filtros button {
     width: 5%;
     height: 28px;
     border: none;
@@ -209,12 +220,13 @@ body {
     background-color: #212529;
     color: #D2D4C8;
 }
-.filtros button:hover{
+
+.filtros button:hover {
     background-color: #5F7470;
     color: #212529;
 }
 
-.nav{
+.nav {
     padding: 20px 0 0 0;
     display: flex;
     flex-direction: column;
@@ -253,7 +265,6 @@ hr:not([size]) {
     justify-content: center;
     align-items: baseline;
     padding: 15px;
-    overflow: scroll;
 }
 
 .menu {
@@ -336,18 +347,18 @@ span {
     .mesas {
         width: 25%;
     }
-    .filtros{
+    .filtros {
         display: none;
         flex-direction: column;
     }
-    .filtros input{
+    .filtros input {
         height: 30px;
         margin: 5px;
         font-size: 80%;
     }
-    .filtros button{
-        margin: 0 0 0 5px;      
-        width: 100px;  
+    .filtros button {
+        margin: 0 0 0 5px;
+        width: 100px;
     }
 }
 
