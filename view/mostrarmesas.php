@@ -93,11 +93,13 @@ $resultado = $mesas->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
     <div id="modal" class="modal">
-        <a href="#" id="js-close-modal">X</a>
-        <form id="form" method="post">
-            <input type="number"  id="comensales" name="comensales" value="1" >
-            <input type="submit" id="submit">
-        </form>
+        <div class="modalcontainer">
+            <form id="form" method="post">
+                <input type="number"  id="comensales" name="comensales" value="1" >
+                <input type="submit" id="submit" value="OK">
+                <a href="#" class="modalclose" id="js-close-modal">X</a>
+            </form>
+        </div>
     </div>
 
     <script>
