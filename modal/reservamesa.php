@@ -142,7 +142,7 @@ class ReservaMesa{
 
         // echo "$alu->nombre";
         try {
-            $stmt=$pdo->prepare("SELECT * FROM tbl_reserva_mesa rm  inner join tbl_mesa m on m.Id_mesa=rm.Id_mesa inner join tbl_sala s on s.Id_sala=m.Sala");
+            $stmt=$pdo->prepare("SELECT * FROM tbl_reserva_mesa rm  inner join tbl_mesa m on m.Id_mesa=rm.Id_mesa inner join tbl_sala s on s.Id_sala=m.Sala ORDER BY rm.Id_reserva DESC ");
            /*  $stmt -> bindparam(  $stmt->bindParam(1,$id)); */
             $stmt->execute();
             return $stmt;
@@ -151,6 +151,53 @@ class ReservaMesa{
         }
 
 
+    }
+
+    public static function getFilter($camarero,$sala,$mesa){
+        require "../controller/conexion.php";
+        try {
+
+            if($camarero==null && $sala==null && $mesa==null){
+                $sql="SELECT * FROM tbl_reserva_mesa rm  inner join tbl_mesa m on m.Id_mesa=rm.Id_mesa inner join tbl_sala s on s.Id_sala=m.Sala ORDER BY rm.Id_reserva DESC";
+            }else{
+                $sql="SELECT * FROM tbl_reserva_mesa rm  inner join tbl_mesa m on m.Id_mesa=rm.Id_mesa inner join tbl_sala s on s.Id_sala=m.Sala ";
+
+                if($camarero==!null){
+                    $sql=$sql." WHERE Id_cam LIKE '%$camarero%' ";
+                    if($sala==!null || $mesa==!null){
+                        $sql=$sql."AND";
+                    }
+                }
+                if($sala==!null){
+                    
+                    if($camarero==!null){
+                        $sql=$sql." s.nombre_sala LIKE '%$sala%' ";
+                    }else{
+                        $sql=$sql." WHERE s.nombre_sala LIKE '%$sala%' ";
+                    }
+                    if($mesa==!null){
+                        $sql=$sql."AND";
+                    }
+                }
+                if($mesa==!null){
+                    
+                    if($sala==!null || $camarero==!null){
+                        $sql=$sql." m.Id_mesa LIKE '%$mesa%' ";
+                    }else{
+                        $sql=$sql." WHERE m.Id_mesa LIKE '%$mesa%' ";
+                    }
+                }
+                $sql=$sql." ORDER BY rm.Id_reserva DESC";
+            }
+            /* echo $sql; */
+            /* die(); */
+            $stmt=$pdo->prepare($sql);
+           /*  $stmt -> bindparam(  $stmt->bindParam(1,$id)); */
+            $stmt->execute();
+            return $stmt;
+        }catch (Exception $e){
+            echo "<script>alert('Error al mostrar datos de las mesas')</script>";
+        }
     }
 
     // public function subirRegistroMesa(){

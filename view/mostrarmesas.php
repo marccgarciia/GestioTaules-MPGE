@@ -63,6 +63,7 @@ $resultado = $mesas->fetchAll(PDO::FETCH_ASSOC);
         if($mesa['capacidad_mesa']=='4' && $mesa['Estado']=='libre'){
             /* echo "<div class='mesas'>"; */
             echo "<img src='../static/img/4disponible.png'"."onClick="."clickMe({$mesa['Id_mesa']},'ocupada',{$_GET['sala']})".">";
+            
             /* echo "</div>"; */
         }
         if($mesa['capacidad_mesa']=='4' && $mesa['Estado']=='ocupada'){
@@ -88,6 +89,8 @@ $resultado = $mesas->fetchAll(PDO::FETCH_ASSOC);
             echo "<img src='../static/img/2mantenimiento.png' alt='ocupado'>";
             /* echo "</div>"; */
         }
+        /* echo "<br>"; */        
+        /* echo "<p style=text-align:center;>Mesa: {$mesa['Id_mesa']}<p>"; */
         echo "</div>";
     }
     ?>

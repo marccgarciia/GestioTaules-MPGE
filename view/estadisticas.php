@@ -33,13 +33,16 @@
         <label for="btn-modal" class="btn-modal"><i class="fa-solid fa-magnifying-glass"></i></label> <!--buscador-->
 
         <input type="checkbox" id="btn-modal">
-        <div class="filtros">
-            <input type="text" name="filtro_camareros" placeholder="Filtrar Camareros">
-            <input type="text" name="filtro_salas" placeholder="Filtrar Salas">
-            <input type="text" name="filtro_mesas" placeholder="Filtrar Mesas">
-            <button type="submit" name="buscador" value="Buscar" class="btnbuscar"><label for=""><i class="fa-solid fa-bolt"></i></label></button> 
-        </div>
-
+        
+            <div class="filtros">
+                <form action="estadisticas.php?filtro=filtro" method="POST">
+                    <input type="text" name="filtro_camareros" placeholder="Filtrar Camareros">
+                    <input type="text" name="filtro_salas" placeholder="Filtrar Salas">
+                    <input type="text" name="filtro_mesas" placeholder="Filtrar Mesas">
+                    <button type="submit" name="buscador" value="Buscar" class="btnbuscar"><label for=""><i class="fa-solid fa-bolt"></i></label></button> 
+                </form> 
+            </div>
+        
         <div class="estadisticas">
                 
             <table class="tftable">
@@ -52,11 +55,23 @@
                     <th>OCUPACION</th>
                 </tr>
             <?php
+
+
 require_once '../controller/conexion.php';
 require_once '../modal/reservamesa.php';
 $mesas=ReservaMesa::getAll();
-
+if(isset($_GET['filtro']) && isset($_POST['buscador'])){
+    $mesas=ReservaMesa::getFilter($_POST['filtro_camareros'],$_POST['filtro_salas'],$_POST['filtro_mesas']);
+    
+}
 $resultado = $mesas->fetchAll(PDO::FETCH_ASSOC);
+$cantidadDeRegistros=count($resultado);
+/* echo $cantidadDeRegistros; */
+if($cantidadDeRegistros=='0'){
+    echo "<p style=color:red;>No se encontro ningun registro</p>";
+}else{
+    echo "<p>Se han encontrado $cantidadDeRegistros registros</p>";
+}
 echo "<tr>";
 foreach($resultado as $info){
 
