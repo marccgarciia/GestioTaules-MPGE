@@ -114,7 +114,7 @@ class Mesa{
 
     }
 
-public static function updateEstado (int $id, string $est){
+public static function updateEstado (int $id, string $est, int $ocu){
 
         if ($est == "ocupada" || $est =="libre" || $est=="mantenimiento" ){
             require "../controller/conexion.php";
@@ -122,7 +122,7 @@ public static function updateEstado (int $id, string $est){
             $id_cam=1;
             $dia=date("Y-m-d");
             $hora=date("H:i:s");
-            $ocu=4;
+
 
             try {
                 $pdo -> beginTransaction();

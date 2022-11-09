@@ -46,7 +46,7 @@ require_once '../controller/conexion.php';
 require_once '../modal/mesa.php';
 if (isset($_GET['camb']) && $_GET['camb'] == 'si'){
 
-    Mesa::updateEstado($_GET['id'], $_GET['est']);
+    Mesa::updateEstado($_GET['id'], $_GET['est'], (int)$_GET['comen']);
 
 }
 
@@ -62,12 +62,12 @@ $resultado = $mesas->fetchAll(PDO::FETCH_ASSOC);
         echo "<div class='mesas'>";
         if($mesa['capacidad_mesa']=='4' && $mesa['Estado']=='libre'){
             /* echo "<div class='mesas'>"; */
-            echo "<img name='js-open-modal' src='../static/img/4disponible.png'"."onClick="."clickMe({$mesa['Id_mesa']},'ocupada',{$_GET['sala']})".">";
+            echo "<img name='js-open-modal' src='../static/img/4disponible.png'"."onClick="."clickMe2({$mesa['Id_mesa']},'ocupada',{$_GET['sala']})".">";
             /* echo "</div>"; */
         }
         if($mesa['capacidad_mesa']=='4' && $mesa['Estado']=='ocupada'){
             /* echo "<div class='mesas'>"; */
-            echo "<img src='../static/img/4ocupado.png'"."clickMe({$mesa['Id_mesa']},'libre',{$_GET['sala']})".">";
+            echo "<img src='../static/img/4ocupado.png'"."onClick="."clickMe({$mesa['Id_mesa']},'libre',{$_GET['sala']})".">";
             /* echo "</div>"; */
         }
         if($mesa['capacidad_mesa']=='4' && $mesa['Estado']=='mantenimiento'){
@@ -76,7 +76,7 @@ $resultado = $mesas->fetchAll(PDO::FETCH_ASSOC);
             /* echo "</div>"; */
         }
         if($mesa['capacidad_mesa']=='2' && $mesa['Estado']=='libre'){
-            echo "<img  name='js-open-modal' src='../static/img/2disponible.png'"."onClick="."clickMe({$mesa['Id_mesa']},'ocupada',{$_GET['sala']})".">";
+            echo "<img  name='js-open-modal' src='../static/img/2disponible.png'"."onClick="."clickMe2({$mesa['Id_mesa']},'ocupada',{$_GET['sala']})".">";
         }
         if($mesa['capacidad_mesa']=='2' && $mesa['Estado']=='ocupada'){
             /* echo "<div class='mesas'>"; */
