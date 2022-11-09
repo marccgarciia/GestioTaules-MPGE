@@ -37,6 +37,7 @@
             <input type="text" name="filtro_camareros" placeholder="Filtrar Camareros">
             <input type="text" name="filtro_salas" placeholder="Filtrar Salas">
             <input type="text" name="filtro_mesas" placeholder="Filtrar Mesas">
+            <input type="text" name="filtro_dias" placeholder="Filtrar Dias">
             <button type="submit" name="buscador" value="Buscar" class="btnbuscar"><label for=""><i class="fa-solid fa-bolt"></i></label></button> 
         </div>
 
@@ -69,7 +70,7 @@
                     echo "<td>{$info['Ocupacion_rm']}</td>";
                     echo "</tr>";
                 }
-
+                
                 ?>
             </table> 
         </div>

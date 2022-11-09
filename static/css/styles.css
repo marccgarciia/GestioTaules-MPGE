@@ -25,6 +25,7 @@ body {
 
 .estadisticas {
     margin: 10px 5px;
+    height: 300px;
     overflow: scroll;
 }
 
@@ -35,7 +36,6 @@ body {
     border-width: 1px;
     border-color: #5F7470;
     border-collapse: collapse;
-    overflow: scroll;
 }
 
 .tftable th {
@@ -168,7 +168,6 @@ hr:not([size]) {
     justify-content: center;
     align-items: baseline;
     padding: 15px;
-    overflow: scroll;
 }
 
 .menu {
