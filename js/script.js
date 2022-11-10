@@ -29,6 +29,8 @@ function clickMe2(id, estado, sala) {
 
 }
 
+
+
 function clickMe(id, estado, sala) {
 
 
@@ -40,16 +42,6 @@ function clickMe(id, estado, sala) {
 }
 
 
-function modalIncidencias() {
-    var modal2 = document.getElementById('id01');
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal2) {
-            modal2.style.display = "none";
-        }
-    }
-}
 
 function borrar(url) {
     Swal.fire({
