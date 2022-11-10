@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(!isset($_SESSION['oficio'])){
+    echo "<script>window.location.href='login.html'</script>";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,14 +30,18 @@
         <a class="cerrarsesion" href="login.html">Cerrar sesión</a>
         <hr class="separador">
     </div>
-
-    <p class="bienvenida">Bienvenido @camarero1</p>
+<?php
+    
+    $nombre=$_SESSION['nombre'];
+    echo "<p class='bienvenida'>Bienvenido $nombre</p>";
+?>
+    
 
     <div class="menu">
 
         <?php
         require_once "../modal/sala.php";
-        session_start();
+        /* session_start(); */
 
         $ListaSalas = Sala::getAll();
         foreach ($ListaSalas as $salas => $sala) {
@@ -40,7 +50,14 @@
         }
         ?>
         <a href="estadisticas.php">ESTADÍSTICAS</a>
-        <a href="incidencia.php">INCIDENCIAS</a>
+        <?php
+            if($_SESSION['oficio']=='mantenimiento'){
+                echo "<a href='incidencia.php'>INCIDENCIAS</a>";
+            }else{
+                echo "<a href='crearincidencia.php'>CREAR INCIDENCIA</a>";
+            }
+        ?>
+        <!-- <a href="incidencia.php">INCIDENCIAS</a> -->
     </div>
 </body>
 
