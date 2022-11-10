@@ -33,26 +33,71 @@
         <label for="btn-modal" class="btn-modal"><i class="fa-solid fa-magnifying-glass"></i></label> <!--buscador-->
 
         <input type="checkbox" id="btn-modal">
-        <div class="filtros">
-            <input type="text" name="filtro_camareros" placeholder="Filtrar Camareros">
-            <input type="text" name="filtro_salas" placeholder="Filtrar Salas">
-            <input type="text" name="filtro_mesas" placeholder="Filtrar Mesas">
-            <button type="submit" name="buscador" value="Buscar" class="btnbuscar"><label for=""><i class="fa-solid fa-bolt"></i></label></button> 
-        </div>
-
+        
+            <div class="filtros">
+                <form action="estadisticas.php?filtro=filtro" method="POST">
+                    <input type="text" name="filtro_camareros" placeholder="Filtrar Camareros">
+                    <input type="text" name="filtro_salas" placeholder="Filtrar Salas">
+                    <input type="text" name="filtro_mesas" placeholder="Filtrar Mesas">
+                    <input type="date" name="filtro_dia" placeholder="Filtrar Dia">
+                    <input type="time" name="filtro_horainicial" placeholder="Filtrar Hora Inicial">
+                    <input type="time" name="filtro_horafinal" placeholder="Filtrar Hora Final">
+                    <button type="submit" name="buscador" value="Buscar" class="btnbuscar"><label for=""><i class="fa-solid fa-bolt"></i></label></button> 
+                </form> 
+            </div>
+        
         <div class="estadisticas">
                 
             <table class="tftable">
                 <tr>
-                    <th>ID MESA</th>
                     <th>MESA</th>
+                    <th>SALA</th>
                     <th>ESTADO</th> 
                     <th>HORA</th>
                     <th>DIA</th>
                     <th>OCUPACION</th>
                 </tr>
+            <?php
 
-                <tr>
+
+require_once '../controller/conexion.php';
+require_once '../modal/reservamesa.php';
+$mesas=ReservaMesa::getAll();
+if(isset($_GET['filtro']) && isset($_POST['buscador'])){
+
+    $camarero=$pdo->quote($_POST['filtro_camareros']);
+    $salas=$pdo->quote($_POST['filtro_salas']);
+    $mesas=$pdo->quote($_POST['filtro_mesas']);
+    $dia=$pdo->quote($_POST['filtro_dia']);
+    $horainicial=$pdo->quote($_POST['filtro_horainicial']);
+    $horafinal=$pdo->quote($_POST['filtro_horafinal']);
+    $mesas=ReservaMesa::getFilter((int)$camarero,(int)$salas,(int)$mesas,(int)$dia,(int)$horainicial,(int)$horafinal); 
+    
+}
+$resultado = $mesas->fetchAll(PDO::FETCH_ASSOC);
+$cantidadDeRegistros=count($resultado);
+/* echo $cantidadDeRegistros; */
+if($cantidadDeRegistros=='0'){
+    echo "<p style=color:red;>No se encontro ningun registro</p>";
+}else{
+    echo "<p>Se han encontrado $cantidadDeRegistros registros</p>";
+}
+echo "<tr>";
+foreach($resultado as $info){
+
+    echo "<tr>";
+    echo "<td>{$info['Id_mesa']}</td>";
+    echo "<td>{$info['nombre_sala']}</td>";
+    echo "<td>{$info['estado']}</td>";
+    echo "<td>{$info['Hora_rm']}</td>";
+    echo "<td>{$info['Dia_rm']}</td>";
+    echo "<td>{$info['Ocupacion_rm']}</td>";
+    echo "</tr>";
+}
+
+            ?>
+            
+                <!-- <tr>
                     <td> </td>
                     <td> </td>
                     <td> </td>
@@ -75,7 +120,7 @@
                     <td> </td>
                     <td> </td>
                     <td> </td>
-                </tr>
+                </tr> -->
             </table> 
         </div>
     </div>
