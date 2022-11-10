@@ -116,12 +116,12 @@ class Mesa{
 
 public static function updateEstado (int $id, string $est, int $ocu){
 
-        if ($est == "ocupada" || $est =="libre" || $est=="mantenimiento" ){
+        if ($est == "ocupada" ){
             require "../controller/conexion.php";
 
             $id_cam=1;
             $dia=date("Y-m-d");
-            $hora=date("H:i:s");
+            $hora='00:00';
 
 
             try {
@@ -132,14 +132,13 @@ public static function updateEstado (int $id, string $est, int $ocu){
                 $stmt -> bindparam( 2,$id );
                 $stmt->execute();
 
-                $sql2="INSERT INTO `tbl_reserva_mesa`(`Id_reserva`, `Id_mesa`, `Id_cam`, `Dia_rm`, `Hora_rm`, `Ocupacion_rm`, `estado`) VALUES (null,?,?,?,?,?,?)";
+                $sql2="INSERT INTO `tbl_reserva_mesa`(`Id_reserva`, `Id_mesa`, `Id_cam`, `Dia_rm`, `Hora_ini_rm`, `Ocupacion_rm`, `Hora_final_rm`) VALUES (null,?,?,?,current_time,?,?)";
                 $stmt= $pdo->prepare($sql2);
                 $stmt->bindParam(1,$id);
                 $stmt->bindParam(2,$id_cam);
                 $stmt->bindParam(3,$dia);
-                $stmt->bindParam(4,$hora);
-                $stmt->bindParam(5,$ocu);
-                $stmt->bindParam(6,$est);
+                $stmt->bindParam(4,$ocu);
+                $stmt->bindParam(5,$hora);
                 $stmt->execute();
 
 
@@ -153,6 +152,32 @@ public static function updateEstado (int $id, string $est, int $ocu){
                 echo $e->getMessage();
                 echo "<script>alert('Error al actualizar el estado de la mesa '.$id)</script>";
             }
+
+        }else if ($est =="libre" ){
+            try {
+                require "../controller/conexion.php";
+                $pdo -> beginTransaction();
+                $sql="UPDATE `tbl_mesa` SET `Estado`=? WHERE Id_mesa=?";
+                $stmt=$pdo->prepare($sql);
+                $stmt -> bindparam( 1,$est);
+                $stmt -> bindparam( 2,$id );
+                $stmt->execute();
+
+                $sql="UPDATE `tbl_reserva_mesa` SET `Hora_final_rm`=CURRENT_TIME WHERE Id_mesa=? and Hora_final_rm='00:00'    ";
+                $stmt=$pdo->prepare($sql);
+                $stmt -> bindparam( 1,$id);
+                $stmt->execute();
+                $pdo -> commit();
+
+            }catch (Exception $e){
+                $pdo -> rollback();
+                echo $e->getMessage();
+                echo "<script>alert('Error al actualizar el estado de la mesa '.$id)</script>";
+            }
+
+
+
+        }else if ($est=="mantenimiento" ){
 
         }else{
             echo "<script>alert('Estado introducido no válido')</script>";

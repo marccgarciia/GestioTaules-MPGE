@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-11-2022 a las 18:07:19
+-- Tiempo de generación: 10-11-2022 a las 15:05:43
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 7.4.30
 
@@ -71,7 +71,7 @@ INSERT INTO `tbl_mesa` (`Id_mesa`, `capacidad_mesa`, `Estado`, `Sala`) VALUES
 (6, 4, 'libre', 1),
 (7, 4, 'libre', 2),
 (8, 4, 'libre', 2),
-(9, 4, 'libre', 2);
+(9, 4, 'ocupada', 2);
 
 -- --------------------------------------------------------
 
@@ -84,38 +84,25 @@ CREATE TABLE `tbl_reserva_mesa` (
   `Id_mesa` int(11) NOT NULL,
   `Id_cam` int(11) NOT NULL,
   `Dia_rm` date NOT NULL,
-  `Hora_rm` time NOT NULL,
+  `Hora_ini_rm` time NOT NULL,
   `Ocupacion_rm` int(11) NOT NULL,
-  `estado` enum('libre','ocupada','mantenimiento') NOT NULL
+  `Hora_final_rm` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tbl_reserva_mesa`
 --
 
-INSERT INTO `tbl_reserva_mesa` (`Id_reserva`, `Id_mesa`, `Id_cam`, `Dia_rm`, `Hora_rm`, `Ocupacion_rm`, `estado`) VALUES
-(24, 1, 1, '0000-00-00', '17:20:17', 4, 'ocupada'),
-(25, 1, 1, '0000-00-00', '17:20:25', 4, 'libre'),
-(26, 1, 1, '0000-00-00', '17:21:39', 4, 'ocupada'),
-(27, 1, 1, '2022-11-08', '17:24:46', 4, 'libre'),
-(28, 1, 1, '2022-11-08', '17:24:47', 4, 'ocupada'),
-(29, 2, 1, '2022-11-08', '17:32:04', 4, 'libre'),
-(30, 2, 1, '2022-11-08', '17:32:05', 4, 'ocupada'),
-(31, 2, 1, '2022-11-08', '17:32:05', 4, 'libre'),
-(32, 2, 1, '2022-11-08', '17:32:06', 4, 'ocupada'),
-(33, 2, 1, '2022-11-08', '17:45:30', 4, 'libre'),
-(34, 2, 1, '2022-11-08', '17:45:31', 4, 'ocupada'),
-(35, 2, 1, '2022-11-08', '17:45:31', 4, 'libre'),
-(36, 2, 1, '2022-11-08', '17:45:32', 4, 'ocupada'),
-(37, 3, 1, '2022-11-08', '17:56:48', 4, 'libre'),
-(38, 3, 1, '2022-11-08', '17:56:49', 4, 'ocupada'),
-(39, 2, 1, '2022-11-08', '18:02:54', 4, 'libre'),
-(40, 1, 1, '2022-11-08', '18:02:55', 4, 'libre'),
-(41, 2, 1, '2022-11-08', '18:02:56', 4, 'ocupada'),
-(42, 1, 1, '2022-11-08', '18:02:58', 4, 'ocupada'),
-(43, 1, 1, '2022-11-08', '18:03:05', 4, 'libre'),
-(44, 2, 1, '2022-11-08', '18:03:06', 4, 'libre'),
-(45, 3, 1, '2022-11-08', '18:03:06', 4, 'libre');
+INSERT INTO `tbl_reserva_mesa` (`Id_reserva`, `Id_mesa`, `Id_cam`, `Dia_rm`, `Hora_ini_rm`, `Ocupacion_rm`, `Hora_final_rm`) VALUES
+(162, 1, 1, '2022-11-10', '11:52:05', 4, '11:52:21'),
+(163, 3, 1, '2022-11-10', '11:55:43', 1, '11:58:02'),
+(164, 2, 1, '2022-11-10', '11:58:15', 2, '12:13:32'),
+(165, 2, 1, '2022-11-10', '12:02:13', 2, '12:13:32'),
+(166, 2, 1, '2022-11-10', '12:13:36', 1, '12:13:46'),
+(167, 3, 1, '2022-11-10', '12:13:41', 1, '12:13:45'),
+(168, 4, 1, '2022-11-10', '12:13:44', 1, '12:13:47'),
+(169, 5, 1, '2022-11-10', '12:13:52', 5, '12:13:53'),
+(170, 6, 1, '2022-11-10', '12:13:59', 4, '12:14:01');
 
 -- --------------------------------------------------------
 
@@ -212,7 +199,7 @@ ALTER TABLE `tbl_mesa`
 -- AUTO_INCREMENT de la tabla `tbl_reserva_mesa`
 --
 ALTER TABLE `tbl_reserva_mesa`
-  MODIFY `Id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `Id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=171;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_reserva_sala`

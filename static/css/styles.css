@@ -352,6 +352,12 @@ span {
     width: 70%;
 }
 
+canvas{
+    width:50px;
+    height: 50vh;
+    box-sizing: unset;
+}
+
 @media (max-width: 800px) {
     .close {
         width: 3%;
