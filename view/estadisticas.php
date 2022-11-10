@@ -52,8 +52,8 @@
                 <tr>
                     <th>MESA</th>
                     <th>SALA</th>
-                    <th>ESTADO</th> 
-                    <th>HORA</th>
+                    <th>HORA OCUPACIÓN</th> 
+                    <th>HORA LIBERACIÓN</th>
                     <th>DIA</th>
                     <th>OCUPACION</th>
                 </tr>
@@ -71,7 +71,10 @@ if(isset($_GET['filtro']) && isset($_POST['buscador'])){
     $dia=$pdo->quote($_POST['filtro_dia']);
     $horainicial=$pdo->quote($_POST['filtro_horainicial']);
     $horafinal=$pdo->quote($_POST['filtro_horafinal']);
-    $mesas=ReservaMesa::getFilter((int)$camarero,(int)$salas,(int)$mesas,(int)$dia,(int)$horainicial,(int)$horafinal); 
+/*     $camarero=$camarero[1];
+    $mesas=$mesas[1]; */
+    /* echo $camarero; */
+    $mesas=ReservaMesa::getFilter($camarero,$salas,$mesas,$dia,$horainicial,$horafinal); 
     
 }
 $resultado = $mesas->fetchAll(PDO::FETCH_ASSOC);
@@ -88,8 +91,8 @@ foreach($resultado as $info){
     echo "<tr>";
     echo "<td>{$info['Id_mesa']}</td>";
     echo "<td>{$info['nombre_sala']}</td>";
-    echo "<td>{$info['estado']}</td>";
-    echo "<td>{$info['Hora_rm']}</td>";
+    echo "<td>{$info['Hora_ini_rm']}</td>";
+    echo "<td>{$info['Hora_final_rm']}</td>";
     echo "<td>{$info['Dia_rm']}</td>";
     echo "<td>{$info['Ocupacion_rm']}</td>";
     echo "</tr>";
