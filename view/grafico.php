@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../js/graficos.js"></script>
+    <script src="../js/grafico.js"></script>
     <script src="../static/css/grafic.css"></script>
 </head>
 <body>
