@@ -10,7 +10,8 @@
         <!-- LINK CSS -->
         <link rel="stylesheet" href="../static/css/styles.css">
         <!-- LINK JS -->
-        <script type="text/javascript" src="../static/js/script.js"></script>
+        <script type="text/javascript" src="../js/script.js"></script>
+        <script type="text/javascript" src="../js/validafiltro.js"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <!-- LINK FONT AWESOME -->
         <script src="https://kit.fontawesome.com/2b5286e1aa.js" crossorigin="anonymous"></script>
@@ -36,13 +37,13 @@
         
             <div class="filtros">
                 <form action="estadisticas.php?filtro=filtro" method="POST">
-                    <input type="text" name="filtro_camareros" placeholder="Filtrar Camareros">
-                    <input type="text" name="filtro_salas" placeholder="Filtrar Salas">
-                    <input type="text" name="filtro_mesas" placeholder="Filtrar Mesas">
-                    <input type="date" name="filtro_dia" placeholder="Filtrar Dia">
-                    <input type="time" name="filtro_horainicial" placeholder="Filtrar Hora Inicial">
-                    <input type="time" name="filtro_horafinal" placeholder="Filtrar Hora Final">
-                    <button type="submit" name="buscador" value="Buscar" class="btnbuscar"><label for=""><i class="fa-solid fa-bolt"></i></label></button> 
+                    <input type="text" id="filtro_camareros" name="filtro_camareros" placeholder="Filtrar Camareros">
+                    <input type="text" id="filtro_salas" name="filtro_salas" placeholder="Filtrar Salas">
+                    <input type="text" id="filtro_mesas" name="filtro_mesas" placeholder="Filtrar Mesas">
+                    <input type="date" id="filtro_dia" name="filtro_dia" placeholder="Filtrar Dia">
+                    <input type="time" id="filtro_horainicial" name="filtro_horainicial" placeholder="Filtrar Hora Inicial">
+                    <input type="time" id="filtro_horafinal" name="filtro_horafinal" placeholder="Filtrar Hora Final">
+                    <button type="submit" name="buscador" value="Buscar" class="btnbuscar" onclick="return validarFormulario()"><label for=""><i class="fa-solid fa-bolt"></i></label></button> 
                 </form> 
             </div>
         
