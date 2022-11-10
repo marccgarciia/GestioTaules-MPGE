@@ -241,7 +241,7 @@ class ReservaMesa{
         }
     }
 
-    public function getMediasHora(int $sala){
+    public static function getMediasHora(int $sala){
         require "../controller/conexion.php";
 
         $sql="SELECT TIMEDIFF(rm.Hora_final_rm,rm.Hora_ini_rm) as 'mediaHoras', s.nombre_sala as nombre  FROM `tbl_reserva_mesa` rm INNER JOIN tbl_mesa m on rm.Id_mesa=m.Id_mesa INNER JOIN tbl_sala s on m.Sala=s.Id_sala GROUP by s.Id_sala ";
