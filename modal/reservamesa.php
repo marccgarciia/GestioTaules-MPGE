@@ -194,6 +194,7 @@ class ReservaMesa{
                     /* $dia2=substr($dia,1);
                     echo $dia2; */
                     /* echo $dia; */
+                    echo $dia;
                     
                     if($sala==!null || $camarero==!null || $mesa==!null){
                         $sql=$sql." rm.Dia_rm LIKE '$dia' ";

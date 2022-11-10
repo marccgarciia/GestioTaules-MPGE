@@ -64,7 +64,14 @@ require_once '../controller/conexion.php';
 require_once '../modal/reservamesa.php';
 $mesas=ReservaMesa::getAll();
 if(isset($_GET['filtro']) && isset($_POST['buscador'])){
-    $mesas=ReservaMesa::getFilter($_POST['filtro_camareros'],$_POST['filtro_salas'],$_POST['filtro_mesas'],$_POST['filtro_dia'],$_POST['filtro_horainicial'],$_POST['filtro_horafinal']);
+
+    $camarero=$pdo->quote($_POST['filtro_camareros']);
+    $salas=$pdo->quote($_POST['filtro_salas']);
+    $mesas=$pdo->quote($_POST['filtro_mesas']);
+    $dia=$pdo->quote($_POST['filtro_dia']);
+    $horainicial=$pdo->quote($_POST['filtro_horainicial']);
+    $horafinal=$pdo->quote($_POST['filtro_horafinal']);
+    $mesas=ReservaMesa::getFilter((int)$camarero,(int)$salas,(int)$mesas,(int)$dia,(int)$horainicial,(int)$horafinal); 
     
 }
 $resultado = $mesas->fetchAll(PDO::FETCH_ASSOC);
