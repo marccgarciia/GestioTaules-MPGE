@@ -31,7 +31,7 @@ if(!isset($_SESSION['oficio'])){
 <body>
     <div class="nav">
         <h1>Gestió Taules - MPGE</h1>
-        <a class="cerrarsesion" href="login.html">Cerrar sesión</a>
+        <a class="cerrarsesion" href="../proc/cerrarsesion.php">Cerrar sesión</a>
         <hr class="separador">
     </div>
 

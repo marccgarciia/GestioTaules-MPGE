@@ -36,8 +36,10 @@ function modalIncidencia() {
         modal.classList.add('modal2--show');
 
     })
-    document.getElementById('close-modal').addEventListener("click", function(e) {
-        e.preventDefault();
+    var close = document.getElementById('close-modal')
+    close.addEventListener("click", function(a) {
+        let modal = document.querySelector('.modal2');
+        a.preventDefault();
         modal.classList.remove('modal2--show');
     })
     document.getElementById('form2').addEventListener("submit", function(e) {
