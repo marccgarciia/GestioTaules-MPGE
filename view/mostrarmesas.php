@@ -152,16 +152,16 @@ if(!isset($_REQUEST['sala'])){
                 <form id="form2" method="post">
                     <!-- <input type="number" id="nummesa" name="nummesa" value="" placeholder="Número de Mesa"> -->
                     
-                    <select name="nummesa" id="nummesa" placeholder="Número de Mesa">
+                    <select style="width: 83%; height:30px; border-radius:5px;"name="nummesa" id="nummesa" placeholder="Número de Mesa">
                         <?php
                             foreach($resultado as $info){
-                                echo "<option value='{$info['Id_mesa']}'>Mesa: {$info['Id_mesa']}</option>";
+                                echo "<option value='{$info['Id_mesa']}'>MESA: {$info['Id_mesa']}</option>";
                                 
                             }
                         ?>
                     </select>
                     <br>
-                    <input type="text" size="15" maxlength="100" id="desc" name="desc" placeholder="Descripción">
+                    <input type="text" size="15" maxlength="100" id="desc" name="desc" placeholder="Incidencia">
                     <input type="submit" id="submit" value="OK">
                     <a href="#" class="modalclose" id="close-modal">X</a>
                 </form>
