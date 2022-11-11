@@ -87,6 +87,49 @@ class Incidencias{
         }
     }
 
+    public static function getCreateIncidencia($mesa,$descripcion){
+        try {
+            require "../controller/conexion.php";
+            $sql="SELECT * FROM tbl_mesa WHERE Id_mesa=?";
+            $stmt=$pdo->prepare($sql);
+            $stmt -> bindparam( 1,$mesa);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($result as $info) {
+                $sala=$info['Sala'];
+                echo $sala;
+                
+            }
+
+            $est='mantenimiento';
+            $pdo -> beginTransaction();
+            $sql="UPDATE `tbl_mesa` SET `Estado`=? WHERE Id_mesa=?";
+            $stmt=$pdo->prepare($sql);
+            $stmt -> bindparam( 1,$est);
+            $stmt -> bindparam( 2,$mesa );
+            $stmt->execute();
+
+
+            $sql="INSERT INTO `tbl_incidencia`(`sala_inc`, `mesa_inc`, `incidencia_inc`) VALUES (?,?,?);";
+            $stmt=$pdo->prepare($sql);
+            $stmt -> bindparam( 1,$sala);
+            $stmt -> bindparam( 2,$mesa);
+            $stmt -> bindparam( 3,$descripcion);
+            $stmt->execute();
+            $pdo -> commit();
+            echo $sql;
+            
+            echo "<script>window.location.href='../view/principal.php'</script>";
+            
+            return $stmt;
+        }catch (Exception $e){
+            $pdo -> rollback();
+            echo $e->getMessage();
+            echo "<script>alert('Error al crear la incidencia ')</script>";
+        }
+    }
+
     public static function getDeleteIncidencia($idincidencia,$idmesa){
         require "../controller/conexion.php";
         try {

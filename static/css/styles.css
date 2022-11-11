@@ -15,26 +15,30 @@ body {
 ::-webkit-scrollbar {
     display: none;
 }
-.solucion{
+
+.solucion {
     background-color: #d7cf30;
     border: none;
     border-radius: 5px;
     padding: 5px;
 }
-.solucion:hover{
-    background-color: #35bb64;
 
+.solucion:hover {
+    background-color: #35bb64;
 }
-.incidencia{
+
+.incidencia {
     width: 2%;
     height: 2%;
     position: fixed;
     left: 89%;
     fill: #d7cf30;
 }
-.incidencia:hover{
+
+.incidencia:hover {
     fill: #d7cf308b;
 }
+
 ::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #889696;
@@ -100,7 +104,8 @@ body {
     background-color: #5F7470;
     color: #212529;
 }
-.botonmodal{
+
+.botonmodal {
     text-decoration: none;
     color: #fff;
     padding: 15px 60px;
@@ -111,13 +116,12 @@ body {
     transition: background-color .3s;
 }
 
-.botonmodal:hover{
+.botonmodal:hover {
     background-color: #fff;
     color: #1e3c72;
 }
 
-
-.modal{
+.modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -132,7 +136,22 @@ body {
     --transition: transform .8s;
 }
 
-.modal--show{
+.modal2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #111111bd;
+    display: flex;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .6s .9s;
+    --transform: translateY(-100vh);
+    --transition: transform .8s;
+}
+
+.modal--show {
     opacity: 1;
     pointer-events: unset;
     transition: opacity .4s;
@@ -140,7 +159,15 @@ body {
     --transition: transform .5s .5s;
 }
 
-.modalcontainer{
+.modal2--show {
+    opacity: 1;
+    pointer-events: unset;
+    transition: opacity .4s;
+    --transform: translateY(0);
+    --transition: transform .5s .5s;
+}
+
+.modalcontainer {
     margin: auto;
     width: 350px;
     max-width: 600px;
@@ -152,62 +179,62 @@ body {
     place-items: center;
     grid-auto-columns: 100%;
     transform: var(--transform);
-    transition:var(--transition);
+    transition: var(--transition);
     display: flex;
     justify-content: center;
 }
-.modalcontainer input{
+
+.modalcontainer input {
     text-align: center;
     border-radius: 5PX;
     border: 1px solid #5F7470;
     padding: 3px;
 }
-.modal__title{
+
+.modal__title {
     font-size: 2.5rem;
 }
 
-.modalp{
+.modalp {
     margin-bottom: 10px;
 }
 
-.modalimg{
+.modalimg {
     width: 90%;
     max-width: 300px;
 }
 
-.modalclose{
+.modalclose {
     height: auto;
     text-decoration: none;
     color: #fff;
     background-color: #F26250;
-    border: 1px solid ;
+    border: 1px solid;
     border-radius: 6px;
     display: inline-block;
     font-weight: 300;
     transition: background-color .3s;
     padding: 1% 5%;
     font-size: 10px;
-    position: fixed;;
+    position: fixed;
+    ;
     top: 8px;
     left: 84%;
 }
 
-.modalclose:hover{
+.modalclose:hover {
     color: #F26250;
     background-color: #fff;
 }
 
-
 @media (max-width:800px) {
-    .modal__container{
+    .modal__container {
         padding: 2em 1.5em;
     }
-
-    .modaltitulo{
+    .modaltitulo {
         font-size: 2rem;
     }
 }
-
 
 #btn-modal {
     display: none;
@@ -373,8 +400,8 @@ span {
     width: 70%;
 }
 
-canvas{
-    width:50px;
+canvas {
+    width: 50px;
     height: 50vh;
     box-sizing: unset;
 }
@@ -400,14 +427,14 @@ canvas{
         margin: 0 0 0 5px;
         width: 100px;
     }
-    .incidencia{
+    .incidencia {
         width: 3%;
         left: 87%;
     }
 }
 
 @media (max-width: 450px) {
-    .incidencia{
+    .incidencia {
         width: 5%;
         left: 80%;
     }
@@ -421,10 +448,10 @@ canvas{
     .mesas img {
         width: 70%;
     }
-    .modalcontainer{
+    .modalcontainer {
         width: 50%;
     }
-    .modalcontainer input{
+    .modalcontainer input {
         width: 50px;
     }
     .modalclose {
