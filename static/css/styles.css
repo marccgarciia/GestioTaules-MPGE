@@ -61,6 +61,18 @@ body {
     border-collapse: collapse;
 }
 
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row-c:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 .tftable th {
     font-size: 12px;
     background-color: #5F7470;
@@ -397,13 +409,26 @@ span {
 }
 
 .mesas img {
-    width: 70%;
+    width: 80%;
+    padding-left: 15%;
 }
 
 canvas {
     width: 50px;
     height: 50vh;
     box-sizing: unset;
+}
+
+.column20altura {
+    height: 20%;
+    float: left;
+    width: 100%;
+}
+
+.column80altura {
+    height: 80%;
+    width: 100%;
+    float: left;
 }
 
 @media (max-width: 800px) {

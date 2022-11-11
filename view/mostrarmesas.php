@@ -91,11 +91,16 @@ if(!isset($_REQUEST['sala'])){
     $resultado = $mesas->fetchAll(PDO::FETCH_ASSOC);
     /* var_dump($resultado); */
     ?>
-    <div class="contenedor">
+    <div class="contenedor ">
         <?php
         $libre = 'libre';
         foreach ($resultado as $mesa) {
             echo "<div class='mesas'>";
+/*             echo "<div class='column20altura'>";
+            echo "<p>MESA: $mesa[Id_mesa]</p>";
+            echo "</div>"; */
+            
+            echo "<div>";
             if ($mesa['capacidad_mesa'] == '4' && $mesa['Estado'] == 'libre') {
                 /* echo "<div class='mesas'>"; */
                 echo "<img name='js-open-modal' style=cursor:pointer; src='../static/img/4disponible.png'" . "onClick=" . "clickMe2({$mesa['Id_mesa']},'ocupada',{$_GET['sala']})" . ">";
@@ -124,6 +129,10 @@ if(!isset($_REQUEST['sala'])){
                 echo "<img style=cursor:pointer; src='../static/img/2mantenimiento.png' alt='ocupado'>";
                 /* echo "</div>"; */
             }
+            
+            echo "<p class='flex'>MESA: $mesa[Id_mesa]</p>";
+            
+            echo "</div>";
             echo "</div>";
         }
         ?>
