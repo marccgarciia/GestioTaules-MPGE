@@ -168,7 +168,7 @@ class ReservaMesa{
  echo $mesa; */
             if($camarero==null && $sala==null && $mesa==null && $dia==null && $horaInicial==null && $horaFinal==null){
                 /* echo "hola"; */
-                die();
+                /* die(); */
                 $sql="SELECT * FROM tbl_reserva_mesa rm  inner join tbl_mesa m on m.Id_mesa=rm.Id_mesa inner join tbl_sala s on s.Id_sala=m.Sala ORDER BY rm.Id_reserva DESC";
             }else{
                 $sql="SELECT * FROM tbl_reserva_mesa rm  inner join tbl_mesa m on m.Id_mesa=rm.Id_mesa inner join tbl_sala s on s.Id_sala=m.Sala ";
