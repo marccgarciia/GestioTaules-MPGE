@@ -11,6 +11,7 @@ function clickMe2(id, estado, sala) {
     }
     document.getElementById('js-close-modal').addEventListener("click", function (e) {
         e.preventDefault();
+        let modal = document.querySelector('.modal');
         modal.classList.remove('modal--show');
     })
 

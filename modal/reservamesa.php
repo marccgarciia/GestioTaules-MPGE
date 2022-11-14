@@ -288,7 +288,7 @@ class ReservaMesa{
     public function getUsosMesas(){
         require "../controller/conexion.php";
 
-        $sql="SELECt COUNT(rm.Id_mesa) as dato, rm.Id_mesa as mesa from tbl_reserva_mesa rm GROUP by rm.Id_mesa ";
+            $sql="SELECt COUNT(rm.Id_mesa) as dato, rm.Id_mesa as mesa from tbl_reserva_mesa rm GROUP by rm.Id_mesa ";
         $stmt=$pdo->prepare($sql);
         $stmt->execute();
 

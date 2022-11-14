@@ -38,7 +38,7 @@ if(!isset($_SESSION['oficio'])){
         <p class="bienvenida">Bienvenido @camarero1 - <span>
                 <?php
                 require_once "../modal/sala.php";
-                session_start();
+            
 
                 $ListaSalas = Sala::nameById($_GET['sala']);
                 foreach ($ListaSalas as $salas => $sala) {
