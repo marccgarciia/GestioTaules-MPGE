@@ -101,14 +101,46 @@ if(!isset($_REQUEST['sala'])){
             echo "</div>"; */
             
             echo "<div>";
+            if($_SESSION['oficio'] == 'camarero'){
+                if ($mesa['capacidad_mesa'] == '4' && $mesa['Estado'] == 'libre') {
+                    /* echo "<div class='mesas'>"; */
+                    echo "<img name='js-open-modal' style=cursor:pointer; src='../static/img/4disponible.png'" . "onClick=" . "clickMe2({$mesa['Id_mesa']},'ocupada',{$_GET['sala']})" . ">";
+                    /* echo "</div>"; */
+                }
+                if ($mesa['capacidad_mesa'] == '4' && $mesa['Estado'] == 'ocupada') {
+                    /* echo "<div class='mesas'>"; */
+                    echo "<img style=cursor:pointer; src='../static/img/4ocupado.png'" . "onClick=" . "clickMe({$mesa['Id_mesa']},'libre',{$_GET['sala']})" . ">";
+                    /* echo "</div>"; */
+                }
+                if ($mesa['capacidad_mesa'] == '4' && $mesa['Estado'] == 'mantenimiento') {
+                    /* echo "<div class='mesas'>"; */
+                    echo "<img style=cursor:pointer; src='../static/img/4mantenimiento.png' alt='ocupado'>";
+                    /* echo "</div>"; */
+                }
+                if ($mesa['capacidad_mesa'] == '2' && $mesa['Estado'] == 'libre') {
+                    echo "<img style=cursor:pointer;  name='js-open-modal' src='../static/img/2disponible.png'" . "onClick=" . "clickMe2({$mesa['Id_mesa']},'ocupada',{$_GET['sala']})" . ">";
+                }
+                if ($mesa['capacidad_mesa'] == '2' && $mesa['Estado'] == 'ocupada') {
+                    /* echo "<div class='mesas'>"; */
+                    echo "<img style=cursor:pointer; src='../static/img/2ocupado.png'" . "onClick=" . "clickMe({$mesa['Id_mesa']},'libre',{$_GET['sala']})" . ">";
+                    /* echo "</div>"; */
+                }
+                if ($mesa['capacidad_mesa'] == '2' && $mesa['Estado'] == 'mantenimiento') {
+                    /* echo "<div class='mesas'>"; */
+                    echo "<img style=cursor:pointer; src='../static/img/2mantenimiento.png' alt='ocupado'>";
+                    /* echo "</div>"; */
+                }
+            }else{
+
+            
             if ($mesa['capacidad_mesa'] == '4' && $mesa['Estado'] == 'libre') {
                 /* echo "<div class='mesas'>"; */
-                echo "<img name='js-open-modal' style=cursor:pointer; src='../static/img/4disponible.png'" . "onClick=" . "clickMe2({$mesa['Id_mesa']},'ocupada',{$_GET['sala']})" . ">";
+                echo "<img name='js-open-modal' style=cursor:pointer; src='../static/img/4disponible.png' >";
                 /* echo "</div>"; */
             }
             if ($mesa['capacidad_mesa'] == '4' && $mesa['Estado'] == 'ocupada') {
                 /* echo "<div class='mesas'>"; */
-                echo "<img style=cursor:pointer; src='../static/img/4ocupado.png'" . "onClick=" . "clickMe({$mesa['Id_mesa']},'libre',{$_GET['sala']})" . ">";
+                echo "<img style=cursor:pointer; src='../static/img/4ocupado.png'>";
                 /* echo "</div>"; */
             }
             if ($mesa['capacidad_mesa'] == '4' && $mesa['Estado'] == 'mantenimiento') {
@@ -117,11 +149,11 @@ if(!isset($_REQUEST['sala'])){
                 /* echo "</div>"; */
             }
             if ($mesa['capacidad_mesa'] == '2' && $mesa['Estado'] == 'libre') {
-                echo "<img style=cursor:pointer;  name='js-open-modal' src='../static/img/2disponible.png'" . "onClick=" . "clickMe2({$mesa['Id_mesa']},'ocupada',{$_GET['sala']})" . ">";
+                echo "<img style=cursor:pointer;  name='js-open-modal' src='../static/img/2disponible.png'>";
             }
             if ($mesa['capacidad_mesa'] == '2' && $mesa['Estado'] == 'ocupada') {
                 /* echo "<div class='mesas'>"; */
-                echo "<img style=cursor:pointer; src='../static/img/2ocupado.png'" . "onClick=" . "clickMe({$mesa['Id_mesa']},'libre',{$_GET['sala']})" . ">";
+                echo "<img style=cursor:pointer; src='../static/img/2ocupado.png'>";
                 /* echo "</div>"; */
             }
             if ($mesa['capacidad_mesa'] == '2' && $mesa['Estado'] == 'mantenimiento') {
@@ -129,6 +161,7 @@ if(!isset($_REQUEST['sala'])){
                 echo "<img style=cursor:pointer; src='../static/img/2mantenimiento.png' alt='ocupado'>";
                 /* echo "</div>"; */
             }
+        }
             
             echo "<p class='flex'>MESA: $mesa[Id_mesa]</p>";
             
