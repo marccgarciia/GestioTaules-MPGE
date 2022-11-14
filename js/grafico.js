@@ -1,16 +1,27 @@
-window.onload = (event) => {
-    var arrayClose= document.getElementsByClassName('modalclose')
-    for (let i=0; i<arrayClose.length; i++){
-        console.log(arrayClose[i])
-        arrayClose[i].classList.add('invisible')
-    }
-};
+
+let myChart=null
 function graficoMediasHora (indices,datos) {
+
+    var array = document.getElementsByName('js-open-modal');
+    for (let i = 0; i < array.length; i++) {
+
+        array[i].addEventListener("click", function (e) {
+            let modal = document.querySelector('.modal');
+            modal.classList.add('modal--show');
+        })
+    }
+    document.getElementById('js-close-modal').addEventListener("click", function (e) {
+        e.preventDefault();
+        modal.classList.remove('modal--show');
+    })
+
+
+
     const labels = indices;
     const data = {
         labels: labels,
         datasets: [{
-            label: 'Terraza',
+            label: '',
             data: datos,
             fill: false,
             borderColor: 'rgb(75, 192, 192)',
@@ -20,12 +31,205 @@ function graficoMediasHora (indices,datos) {
     const config = {
         type: 'line',
         data: data,
+        options: {
+            responsive: true,
+        }
     };
+    if (myChart!=null){
+        myChart.destroy();
+    }
+    const cxt =document.getElementById('myChart');
+    myChart= new Chart(cxt,config);
+    if (myChart !=null){
 
-    const myChart = new Chart(
-        document.getElementById('myChart'),
-        config
-    );
+    }
+
+
+
+
+}
+
+function graficoOcupacion (indices,datos) {
+
+    var array = document.getElementsByName('js-open-modal');
+    for (let i = 0; i < array.length; i++) {
+
+        array[i].addEventListener("click", function (e) {
+            let modal = document.querySelector('.modal');
+            modal.classList.add('modal--show');
+        })
+    }
+    document.getElementById('js-close-modal').addEventListener("click", function (e) {
+        e.preventDefault();
+        modal.classList.remove('modal--show');
+    })
+
+
+    const labels = indices;
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'My First Dataset',
+            data: datos,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)'
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)',
+                'rgb(153, 102, 255)',
+                'rgb(201, 203, 207)'
+            ],
+            borderWidth: 1
+        }]
+    };
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        },
+    };
+    if (myChart != null) {
+        myChart.destroy();
+    }
+    const cxt = document.getElementById('myChart');
+    myChart = new Chart(cxt, config);
+    if (myChart != null) {
+
+    }
+
+
+}
+
+
+function graficoCamareros(indices, datos) {
+
+    var array = document.getElementsByName('js-open-modal');
+    for (let i = 0; i < array.length; i++) {
+
+        array[i].addEventListener("click", function (e) {
+            let modal = document.querySelector('.modal');
+            modal.classList.add('modal--show');
+        })
+    }
+    document.getElementById('js-close-modal').addEventListener("click", function (e) {
+        e.preventDefault();
+        modal.classList.remove('modal--show');
+    })
+
+
+    const labels = indices;
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'My First Dataset',
+            data: datos,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)'
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)',
+                'rgb(153, 102, 255)',
+                'rgb(201, 203, 207)'
+            ],
+            borderWidth: 1
+        }]
+    };
+    const config = {
+        type: 'bar',
+        data: data,
+
+            options: {
+                responsive: true,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        max: 10,
+                        ticks: {
+                            steps: 10,
+                            stepSize: 1
+                        }
+                    }
+                }
+
+
+        },
+    };
+    if (myChart != null) {
+        myChart.destroy();
+    }
+    const cxt = document.getElementById('myChart');
+    myChart = new Chart(cxt, config);
+    if (myChart != null) {
+
+    }
+
+
+}
+
+function graficoMesas(indices, datos) {
+
+    var array = document.getElementsByName('js-open-modal');
+    for (let i = 0; i < array.length; i++) {
+
+        array[i].addEventListener("click", function (e) {
+            let modal = document.querySelector('.modal');
+            modal.classList.add('modal--show');
+        })
+    }
+    document.getElementById('js-close-modal').addEventListener("click", function (e) {
+        e.preventDefault();
+        modal.classList.remove('modal--show');
+    })
+
+
+    const labels = indices;
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'uso de mesas',
+            data:datos,
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
+    };
+    const config = {
+        type: 'line',
+        data: data,
+    };
+    if (myChart != null) {
+        myChart.destroy();
+    }
+    const cxt = document.getElementById('myChart');
+    myChart = new Chart(cxt, config);
+    if (myChart != null) {
+
+    }
 
 
 }

@@ -241,17 +241,63 @@ class ReservaMesa{
         }
     }
 
-    public static function getMediasHora(int $sala){
+    public function getMediasHora(){
         require "../controller/conexion.php";
 
         $sql="SELECT TIMEDIFF(rm.Hora_final_rm,rm.Hora_ini_rm) as 'mediaHoras', s.nombre_sala as nombre  FROM `tbl_reserva_mesa` rm INNER JOIN tbl_mesa m on rm.Id_mesa=m.Id_mesa INNER JOIN tbl_sala s on m.Sala=s.Id_sala GROUP by s.Id_sala ";
         $stmt=$pdo->prepare($sql);
-        $stmt -> bindparam( 1,$sala);
+
         $stmt->execute();
 
         return $stmt;
 
     }
+
+
+    public function getOcupaciones(){
+        require "../controller/conexion.php";
+
+        $sql="SELECT SUM(rm1.Ocupacion_rm) as suma, s.nombre_sala from tbl_reserva_mesa rm1 INNER Join tbl_mesa m on m.Id_mesa=rm1.Id_mesa INNER JOIN tbl_sala s on s.Id_sala=m.Sala GROUP by s.Id_sala , rm1.Dia_rm  ";
+        $stmt=$pdo->prepare($sql);
+        $stmt->execute();
+
+        return $stmt;
+
+    }
+
+    public function getCantidadServiciosCamarero(){
+        require "../controller/conexion.php";
+
+        $sql="SELECT count(rm.Id_cam) as cuenta from tbl_reserva_mesa  rm GROUP by rm.Id_cam ";
+        $stmt=$pdo->prepare($sql);
+        $stmt->execute();
+
+        return $stmt;
+
+    }
+    public function getEstatsCamareros(){
+        require "../controller/conexion.php";
+
+        $sql="Select AVG(num) as media, cam from (SELECT count(rm.Id_cam) as num, concat(c.Nombre_cam,c.Apellido_cam) as cam from tbl_reserva_mesa rm  INNER JOIN tbl_camarero c on c.Id_cam=rm.Id_cam GROUP by rm.Id_cam, rm.Dia_rm) as contador";
+        $stmt=$pdo->prepare($sql);
+        $stmt->execute();
+
+        return $stmt;
+
+    }
+    public function getUsosMesas(){
+        require "../controller/conexion.php";
+
+        $sql="SELECt COUNT(rm.Id_mesa) as dato, rm.Id_mesa as mesa from tbl_reserva_mesa rm GROUP by rm.Id_mesa ";
+        $stmt=$pdo->prepare($sql);
+        $stmt->execute();
+
+        return $stmt;
+
+    }
+
+
+
     // public function subirRegistroMesa(){
 
     // }

@@ -12,6 +12,9 @@
         <!-- LINK JS -->
         <script type="text/javascript" src="../static/js/script.js"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="../js/grafico.js"></script>
         <!-- LINK FONT AWESOME -->
         <script src="https://kit.fontawesome.com/2b5286e1aa.js" crossorigin="anonymous"></script>
         <title>Página Principal - MPGE</title>
@@ -52,8 +55,8 @@
                 <tr>
                     <th>MESA</th>
                     <th>SALA</th>
-                    <th>ESTADO</th> 
-                    <th>HORA</th>
+                    <th>HORA OCUPACIÓN</th> 
+                    <th>HORA LIBERACIÓN</th>
                     <th>DIA</th>
                     <th>OCUPACION</th>
                 </tr>
@@ -71,7 +74,10 @@ if(isset($_GET['filtro']) && isset($_POST['buscador'])){
     $dia=$pdo->quote($_POST['filtro_dia']);
     $horainicial=$pdo->quote($_POST['filtro_horainicial']);
     $horafinal=$pdo->quote($_POST['filtro_horafinal']);
-    $mesas=ReservaMesa::getFilter((int)$camarero,(int)$salas,(int)$mesas,(int)$dia,(int)$horainicial,(int)$horafinal); 
+/*     $camarero=$camarero[1];
+    $mesas=$mesas[1]; */
+    /* echo $camarero; */
+    $mesas=ReservaMesa::getFilter($camarero,$salas,$mesas,$dia,$horainicial,$horafinal); 
     
 }
 $resultado = $mesas->fetchAll(PDO::FETCH_ASSOC);
@@ -88,16 +94,92 @@ foreach($resultado as $info){
     echo "<tr>";
     echo "<td>{$info['Id_mesa']}</td>";
     echo "<td>{$info['nombre_sala']}</td>";
-    echo "<td>{$info['estado']}</td>";
-    echo "<td>{$info['Hora_rm']}</td>";
+    echo "<td>{$info['Hora_ini_rm']}</td>";
+    echo "<td>{$info['Hora_final_rm']}</td>";
     echo "<td>{$info['Dia_rm']}</td>";
     echo "<td>{$info['Ocupacion_rm']}</td>";
     echo "</tr>";
 }
 
             ?>
-            </table> 
+            </table>
         </div>
+
+        <?php
+        require_once "../modal/reservamesa.php";
+
+        $lista=ReservaMesa::getMediasHora();
+        $sala=[];
+        $media=[];
+        foreach ($lista as $resultado){
+            $tiempo=explode(":",$resultado['mediaHoras']);
+            $min=$tiempo[0]*60;
+            $min2=$tiempo[1];
+            $min3=$tiempo[2]/60;
+            $minFin=$min + $min2 + $min3;
+
+            array_push($sala, $resultado['nombre']);
+            array_push($media,$minFin);
+        }
+
+        $salaJSON=json_encode($sala);
+        $mediaJSON=json_encode($media);
+
+
+        $ocupaciones=ReservaMesa::getOcupaciones();
+        $sala2=[];
+        $media2=[];
+        foreach ($ocupaciones as $resultado){
+
+            array_push($sala2, $resultado['nombre_sala']);
+            array_push($media2,$resultado['suma']);
+        }
+        $ocupaciones=ReservaMesa::getEstatsCamareros();
+        $sala3=[];
+        $media3=[];
+        foreach ($ocupaciones as $resultado){
+
+            array_push($sala3, $resultado['cam']);
+            array_push($media3,$resultado['media']);
+        }
+        $ocupaciones=ReservaMesa::getUsosMesas();
+        $sala4=[];
+        $media4=[];
+        foreach ($ocupaciones as $resultado){
+
+            array_push($sala4, $resultado['mesa']);
+            array_push($media4,$resultado['dato']);
+        }
+
+
+        $salaJSON=json_encode($sala);
+        $mediaJSON=json_encode($media);
+        $sala2JSON=json_encode($sala2);
+        $media2JSON=json_encode($media2);
+        $sala3JSON=json_encode($sala3);
+        $media3JSON=json_encode($media3);
+        $sala4JSON=json_encode($sala4);
+        $media4JSON=json_encode($media4);
+        echo "<div class='buttons'>";
+        echo "<button type='submit' name='js-open-modal' onclick="."graficoMediasHora($salaJSON,$mediaJSON)".">"."Tiempo de uso por salas"."</button>";
+        echo "<button type='submit' name='js-open-modal' onclick="."graficoOcupacion($sala2JSON,$media2JSON)".">"."Ocupación diaria"."</button>";
+        echo "<button type='submit' name='js-open-modal' onclick="."graficoCamareros($sala3JSON,$media3JSON)".">"."Servicios Camareros"."</button>";
+        echo "<button type='submit' name='js-open-modal' onclick="."graficoMesas($sala4JSON,$media4JSON)".">"."Uso de mesas"."</button>";
+        echo "</div>";
+
+
+        ?>
+        <div id="modal" class="modal">
+            <div class="modalcontainer2">
+                <canvas  id="myChart"></canvas>
+                <a href="#" class="modalclose" id="js-close-modal">x</a>
+
+
+            </div>
+        </div>
+
     </div>
+
+
 </body>
 </html>
