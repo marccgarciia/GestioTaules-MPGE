@@ -114,12 +114,12 @@ class Mesa{
 
     }
 
-public static function updateEstado (int $sala, int $id, string $est, int $ocu){
+public static function updateEstado (int $sala, int $id, string $est, int $ocu, int $id_cam){
 
         if ($est == "ocupada" ){
             require "../controller/conexion.php";
 
-            $id_cam=1;
+            /* $id_cam=1; */
             $dia=date("Y-m-d");
             $hora='00:00';
 

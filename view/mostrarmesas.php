@@ -83,7 +83,7 @@ if(!isset($_REQUEST['sala'])){
     require_once '../modal/mesa.php';
     if (isset($_GET['camb']) && $_GET['camb'] == 'si') {
 
-        Mesa::updateEstado($_GET['sala'],$_GET['id'], $_GET['est'], (int)$_GET['comen']);
+        Mesa::updateEstado($_GET['sala'],$_GET['id'], $_GET['est'], (int)$_GET['comen'],$_SESSION['camarero']);
     }
 
     $mesas = Mesa::getAllBySalaId($_GET['sala']);

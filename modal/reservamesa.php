@@ -275,7 +275,7 @@ class ReservaMesa{
     public function getOcupaciones(){
         require "../controller/conexion.php";
 
-        $sql="SELECT SUM(rm1.Ocupacion_rm) as suma, s.nombre_sala from tbl_reserva_mesa rm1 INNER Join tbl_mesa m on m.Id_mesa=rm1.Id_mesa INNER JOIN tbl_sala s on s.Id_sala=m.Sala GROUP by s.Id_sala , rm1.Dia_rm  ";
+        $sql="SELECT SUM(rm1.Ocupacion_rm)/count(DISTINCT rm1.Dia_rm) as suma, s.nombre_sala from tbl_reserva_mesa rm1 INNER Join tbl_mesa m on m.Id_mesa=rm1.Id_mesa INNER JOIN tbl_sala s on s.Id_sala=m.Sala GROUP by s.Id_sala";
         $stmt=$pdo->prepare($sql);
         $stmt->execute();
 
@@ -296,7 +296,7 @@ class ReservaMesa{
     public function getEstatsCamareros(){
         require "../controller/conexion.php";
 
-        $sql="Select AVG(num) as media, cam from (SELECT count(rm.Id_cam) as num, concat(c.Nombre_cam,c.Apellido_cam) as cam from tbl_reserva_mesa rm  INNER JOIN tbl_camarero c on c.Id_cam=rm.Id_cam GROUP by rm.Id_cam, rm.Dia_rm) as contador";
+        $sql="SELECT COUNT(rm.Id_cam)/count( DISTINCT rm.Dia_rm) as num, concat(c.Nombre_cam,c.Apellido_cam) as cam from tbl_reserva_mesa rm  INNER JOIN tbl_camarero c on c.Id_cam=rm.Id_cam GROUP BY rm.Id_cam;";
         $stmt=$pdo->prepare($sql);
         $stmt->execute();
 
@@ -306,7 +306,7 @@ class ReservaMesa{
     public function getUsosMesas(){
         require "../controller/conexion.php";
 
-        $sql="SELECt COUNT(rm.Id_mesa) as dato, rm.Id_mesa as mesa from tbl_reserva_mesa rm GROUP by rm.Id_mesa ";
+        $sql="SELECt COUNT(rm.Id_mesa)/count(DISTINCT rm.Dia_rm) as dato, rm.Id_mesa as mesa from tbl_reserva_mesa rm GROUP by rm.Id_mesa;        ";
         $stmt=$pdo->prepare($sql);
         $stmt->execute();
 

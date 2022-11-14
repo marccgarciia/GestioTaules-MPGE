@@ -34,6 +34,7 @@ $stmt-> execute();
 $cons_fin=$stmt -> fetchAll(PDO::FETCH_ASSOC);
 foreach($cons_fin as $info){
     $nombre=$info['Nombre_cam'];
+    $idcamarero=$info['Id_cam'];
 }
 $num = count($cons_fin);
 
@@ -48,6 +49,8 @@ if($num==0){
     $num1 = count($cons_fin);
     foreach($cons_fin as $info){
         $nombre=$info['Nombre_man'];
+        
+
     }
 }
 
@@ -81,6 +84,7 @@ if ($num == 1 || $num1 == 1) {
     if($num==1){
         $_SESSION['oficio'] = 'camarero';
         $_SESSION['nombre']=$nombre;
+        $_SESSION['camarero']=$idcamarero;
     }else{
         $_SESSION['oficio'] = 'mantenimiento';
         $_SESSION['nombre']=$nombre;

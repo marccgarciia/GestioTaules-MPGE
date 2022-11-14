@@ -146,7 +146,7 @@ foreach($resultado as $info){
         foreach ($ocupaciones as $resultado){
 
             array_push($sala3, $resultado['cam']);
-            array_push($media3,$resultado['media']);
+            array_push($media3,$resultado['num']);
         }
         $ocupaciones=ReservaMesa::getUsosMesas();
         $sala4=[];
