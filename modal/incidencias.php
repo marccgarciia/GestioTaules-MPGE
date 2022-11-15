@@ -78,12 +78,84 @@ class Incidencias{
 
         // echo "$alu->nombre";
         try {
-            $stmt=$pdo->prepare("SELECT * FROM tbl_incidencia;");
+            $stmt=$pdo->prepare("SELECT * FROM `tbl_incidencia` i INNER JOIN tbl_sala s ON i.sala_inc=s.Id_sala;");
            /*  $stmt -> bindparam(  $stmt->bindParam(1,$id)); */
             $stmt->execute();
             return $stmt;
         }catch (Exception $e){
             echo "<script>alert('Error al mostrar datos de las mesas')</script>";
+        }
+    }
+
+    public static function getCreateIncidencia($mesa,$descripcion){
+        try {
+            require "../controller/conexion.php";
+            $sql="SELECT * FROM tbl_mesa WHERE Id_mesa=?";
+            $stmt=$pdo->prepare($sql);
+            $stmt -> bindparam( 1,$mesa);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($result as $info) {
+                $sala=$info['Sala'];
+                echo $sala;
+                
+            }
+
+            $est='mantenimiento';
+            $pdo -> beginTransaction();
+            $sql="UPDATE `tbl_mesa` SET `Estado`=? WHERE Id_mesa=?";
+            $stmt=$pdo->prepare($sql);
+            $stmt -> bindparam( 1,$est);
+            $stmt -> bindparam( 2,$mesa );
+            $stmt->execute();
+
+
+            $sql="INSERT INTO `tbl_incidencia`(`sala_inc`, `mesa_inc`, `incidencia_inc`) VALUES (?,?,?);";
+            $stmt=$pdo->prepare($sql);
+            $stmt -> bindparam( 1,$sala);
+            $stmt -> bindparam( 2,$mesa);
+            $stmt -> bindparam( 3,$descripcion);
+            $stmt->execute();
+            $pdo -> commit();
+            echo $sql;
+            
+            echo "<script>window.location.href='../view/principal.php'</script>";
+            
+            return $stmt;
+        }catch (Exception $e){
+            $pdo -> rollback();
+            echo $e->getMessage();
+            echo "<script>alert('Error al crear la incidencia ')</script>";
+        }
+    }
+
+    public static function getDeleteIncidencia($idincidencia,$idmesa){
+        require "../controller/conexion.php";
+        try {
+            $est='libre';
+            $pdo -> beginTransaction();
+            $sql="UPDATE `tbl_mesa` SET `Estado`=? WHERE Id_mesa=?";
+            $stmt=$pdo->prepare($sql);
+            $stmt -> bindparam( 1,$est);
+            $stmt -> bindparam( 2,$idmesa );
+            $stmt->execute();
+
+            $sql2="DELETE FROM tbl_incidencia WHERE `tbl_incidencia`.`Id_inc` = ?";
+            $stmt= $pdo->prepare($sql2);
+            $stmt->bindParam(1,$idincidencia);
+            $stmt->execute();
+
+
+            $pdo -> commit();
+            echo "<script>window.location.href='../view/incidencia.php'</script>";
+
+            return $stmt;
+
+        }catch (Exception $e){
+            $pdo -> rollback();
+            echo $e->getMessage();
+            echo "<script>alert('Error al actualizar el estado de la mesa '.$id)</script>";
         }
     }
 }

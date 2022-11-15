@@ -28,7 +28,7 @@ if(!isset($_SESSION['oficio'])){
 <body>
     <div class="nav">
         <h1>Gestió Taules - MPGE</h1>
-        <a class="cerrarsesion" href="login.html">Cerrar sesión</a>
+        <a class="cerrarsesion" href="../proc/cerrarsesion.php">Cerrar sesión</a>
         <hr class="separador">
     </div>
     
@@ -146,7 +146,7 @@ foreach($resultado as $info){
         foreach ($ocupaciones as $resultado){
 
             array_push($sala3, $resultado['cam']);
-            array_push($media3,$resultado['media']);
+            array_push($media3,$resultado['num']);
         }
         $ocupaciones=ReservaMesa::getUsosMesas();
         $sala4=[];

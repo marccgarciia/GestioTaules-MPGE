@@ -20,9 +20,10 @@ if(!isset($_SESSION['oficio'])){
     <!-- LINK CSS -->
     <link rel="stylesheet" href="../static/css/styles.css">
     <!-- LINK JS -->
-    <script type="text/javascript" src="../static/js/script.js"></script>
+    <script type="text/javascript" src="../js/script.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- LINK FONT AWESOME -->
+    <!-- <script src="../js/script.js"></script> -->
     <script src="https://kit.fontawesome.com/2b5286e1aa.js" crossorigin="anonymous"></script>
     <title>Página Principal - MPGE</title>
 </head>
@@ -30,7 +31,7 @@ if(!isset($_SESSION['oficio'])){
 <body>
     <div class="nav">
         <h1>Gestió Taules - MPGE</h1>
-        <a class="cerrarsesion" href="login.html">Cerrar sesión</a>
+        <a class="cerrarsesion" href="../proc/cerrarsesion.php">Cerrar sesión</a>
         <hr class="separador">
     </div>
 
@@ -65,28 +66,14 @@ if(!isset($_SESSION['oficio'])){
                         $resultado = $incidencias->fetchAll(PDO::FETCH_ASSOC);
                         foreach($resultado as $info){
                             echo "<tr>";
-                            echo "<td>{$info['Mesa_inc']}</td>";
+                            echo "<td>{$info['mesa_inc']}</td>";
+                            echo "<td>{$info['nombre_sala']}</td>";
+                            echo "<td>{$info['incidencia_inc']}</td>";
+                            echo "<td><input type='button' class='solucion' value='Solucionado' onClick=borrar('../proc/borrarincidencias.php?id={$info['Id_inc']}&id_mesa={$info['mesa_inc']}');></td>";
+                            echo "</tr>";
                         }
                 ?>
-                <tr>
-                    <td>5</td>
-                    <td>Terraza</td>
-                    <td>Esta le faltan sillas</td>
-                    <td><input type="submit" value="Solucionado" class="solucion"></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Comedor</td>
-                    <td>Esta no tiene la pata derecha</td>
-                    <td><input type="submit" value="Solucionado" class="solucion"></td>
-                </tr>
-                <tr>
-                    <td>12</td>
-                    <td>Sala Privada</td>
-                    <td>Esta mesa es tonta</td>
-                    <td><input type="submit" value="Solucionado" class="solucion"></td>
-                </tr>
-            </table>
+</table>
         </div>
     </div>
 </body>

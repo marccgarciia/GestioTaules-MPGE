@@ -114,12 +114,12 @@ class Mesa{
 
     }
 
-public static function updateEstado (int $id, string $est, int $ocu){
+public static function updateEstado (int $sala, int $id, string $est, int $ocu, int $id_cam){
 
         if ($est == "ocupada" ){
             require "../controller/conexion.php";
 
-            $id_cam=1;
+            /* $id_cam=1; */
             $dia=date("Y-m-d");
             $hora='00:00';
 
@@ -144,7 +144,7 @@ public static function updateEstado (int $id, string $est, int $ocu){
 
                 $pdo -> commit();
 
-
+                echo "<script>window.location.href='../view/mostrarmesas.php?sala=$sala'</script>";
                 return $stmt;
 
             }catch (Exception $e){
@@ -168,6 +168,7 @@ public static function updateEstado (int $id, string $est, int $ocu){
                 $stmt -> bindparam( 1,$id);
                 $stmt->execute();
                 $pdo -> commit();
+                echo "<script>window.location.href='../view/mostrarmesas.php?sala=$sala'</script>";
 
             }catch (Exception $e){
                 $pdo -> rollback();
